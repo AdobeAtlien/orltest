@@ -27,6 +27,12 @@ async function fetchNavSections() {
   doc.querySelectorAll('img[src]').forEach((img) => {
     img.setAttribute('src', new URL(img.getAttribute('src'), resp.url).href);
   });
+  doc.querySelectorAll('source[srcset]').forEach((source) => {
+    source.srcset = source.getAttribute('srcset').split(',')
+      .map((c) => c.trim().replace(/^\S+/, (u) => new URL(u, resp.url).href)).join(', ');
+  });
+  // published content wraps list-item text in <p>; unwrap so items read as <li><a>…</a><ul>…</ul>
+  doc.querySelectorAll('li > p').forEach((p) => p.replaceWith(...p.childNodes));
   return [...doc.body.children].filter((node) => node.tagName === 'DIV');
 }
 

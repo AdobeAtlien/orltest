@@ -20,6 +20,10 @@ async function fetchFooterSections() {
   doc.querySelectorAll('img[src]').forEach((img) => {
     img.setAttribute('src', new URL(img.getAttribute('src'), resp.url).href);
   });
+  doc.querySelectorAll('source[srcset]').forEach((source) => {
+    source.srcset = source.getAttribute('srcset').split(',')
+      .map((c) => c.trim().replace(/^\S+/, (u) => new URL(u, resp.url).href)).join(', ');
+  });
   return [...doc.body.children].filter((node) => node.tagName === 'DIV');
 }
 
