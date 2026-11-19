@@ -11,15 +11,24 @@
  * Optional chat CTA: a CTA link to `#mindtrip.ai/?q=<prompt>&hint=<hint>` becomes the source's
  * outlined "Chat With OPAL AI" button, which opens the Mindtrip chat with that prompt.
  */
-import { buildMindtripCta, parseMindtripLink } from '../../scripts/mindtrip.js';
+import { buildMindtripCta, mindtripEnabled, parseMindtripLink } from '../../scripts/mindtrip.js';
 
 const VIDEO_EXT = /\.(mp4|webm)$/i;
 
-/** Replaces Mindtrip chat links among the CTAs with the source's chat button. */
+/**
+ * Replaces Mindtrip chat links among the CTAs with the source's chat button; where Mindtrip
+ * does not allow the chat (see mindtripEnabled), the link is left out.
+ */
 function decorateChatCtas(actions) {
+  const enabled = mindtripEnabled();
   actions.querySelectorAll('a[href^="#mindtrip.ai"]').forEach((a) => {
     const options = parseMindtripLink(a.getAttribute('href'));
     if (!options) return;
+    const p = a.closest('p');
+    if (!enabled) {
+      (p && p.parentElement === actions ? p : a).remove();
+      return;
+    }
     const icon = document.createElement('span');
     icon.className = 'hero-split-chat-icon';
     icon.setAttribute('aria-hidden', 'true');
@@ -34,7 +43,6 @@ function decorateChatCtas(actions) {
     });
     const cta = buildMindtripCta(a.textContent.trim(), options, icon);
     cta.classList.add('hero-split-chat');
-    const p = a.closest('p');
     (p && p.parentElement === actions ? p : a).replaceWith(cta);
   });
 }

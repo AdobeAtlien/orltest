@@ -7,6 +7,19 @@ import { loadScript } from './aem.js';
 
 const EMBED_URL = 'https://partner.mindtrip.ai/overlay/embed.js?orgid=visitorlando&locale=en';
 
+/*
+ * Mindtrip only serves the chat inside sites approved for the Visit Orlando account; elsewhere
+ * the drawer opens empty. Add a host here once Mindtrip has approved it. `?mindtrip=on` in the
+ * page URL enables the chat anywhere (to test an address before adding it).
+ */
+const CHAT_HOSTS = [/(^|\.)visitorlando\.com$/i];
+
+/** True where the Mindtrip chat can be shown (approved host, or `?mindtrip=on`). */
+export function mindtripEnabled() {
+  if (new URLSearchParams(window.location.search).get('mindtrip') === 'on') return true;
+  return CHAT_HOSTS.some((host) => host.test(window.location.hostname));
+}
+
 let loading;
 
 /** Loads the Mindtrip overlay script once; resolves when it has run. */
