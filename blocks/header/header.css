@@ -1,7 +1,7 @@
 /*
  * Header – values measured from the source header (Visit Orlando).
- * Mobile first: the bar shows logo + MENU; from 1280px (the source breakpoint) the bar shows
- * the main links with click-to-open panels, plus Tickets.
+ * Mobile first: the bar shows logo + MENU; from 744px it adds Tickets; from 1280px (the source
+ * desktop breakpoint) it also shows the main links with click-to-open panels.
  */
 
 /* ---------- bar ---------- */
@@ -64,7 +64,7 @@ header .nav-tool-link:any-link {
   text-decoration: none;
 }
 
-/* bar links beside MENU appear from the desktop breakpoint */
+/* bar links beside MENU (Tickets) appear from the tablet breakpoint (744px) */
 header .nav-bar .nav-tools .nav-tool-link {
   display: none;
 }
@@ -145,6 +145,11 @@ header .nav-menu-close {
   line-height: 16px;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+/* MENU: 5px between label and lines, as the source (116px wide button) */
+header .nav-menu-toggle {
+  gap: 5px;
 }
 
 header .nav-menu-toggle:focus-visible,
@@ -811,8 +816,19 @@ header .nav-flyout-cards {
   }
 }
 
-/* breakpoint-exception: the source menu overlay switches layout at 46.5em (744px) */
+/*
+ * breakpoint-exception: at 46.5em (744px) the source bar gains 40px side padding and shows
+ * Tickets beside MENU, and its menu overlay switches layout
+ */
 @media (width >= 744px) {
+  header .nav-bar {
+    padding: 17px 40px;
+  }
+
+  header .nav-bar .nav-tools .nav-tool-link {
+    display: inline-flex;
+  }
+
   header .nav-menu-link:any-link {
     font-size: 40px;
   }
@@ -867,9 +883,9 @@ header .nav-flyout-cards {
     padding-top: 18px;
   }
 
+  /* on the desktop bar the source's Tickets sits 1px lower than on tablet */
   header .nav-bar .nav-tools .nav-tool-link {
-    display: inline-flex;
-    margin-bottom: 3px;
+    margin-top: 2px;
   }
 
   header .nav-sections {
