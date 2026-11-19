@@ -7,13 +7,15 @@
  */
 
 /**
- * Fetches the footer fragment. Metadata-independent: /content first (local preview), then the
- * site root (Document Authoring / Edge Delivery).
+ * Fetches the footer fragment. Metadata-independent: from /content on local preview pages
+ * (/content/...), from the site root on published sites (no failing /content request there).
  * @returns {Promise<Element[]|null>} the fragment's top-level sections
  */
 async function fetchFooterSections() {
-  let resp = await fetch('/content/footer.plain.html');
-  if (!resp.ok) resp = await fetch('/footer.plain.html');
+  // the local preview serves pages (and the footer) under /content; published sites at the root
+  const local = window.location.pathname.startsWith('/content/');
+  let resp = await fetch(local ? '/content/footer.plain.html' : '/footer.plain.html');
+  if (!resp.ok && local) resp = await fetch('/footer.plain.html');
   if (!resp.ok) return null;
   const html = await resp.text();
   const doc = new DOMParser().parseFromString(html, 'text/html');
