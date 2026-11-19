@@ -83,6 +83,36 @@ function decorateVideo(frame, src) {
   else window.addEventListener('load', start, { once: true });
 }
 
+/**
+ * Adds the source's sparkle to the heading: three decorative stars after its first word
+ * (e.g. "Orlando"), which fade in one after another once the hero is shown.
+ */
+function decorateSparkle(heading) {
+  const textNode = [...heading.childNodes]
+    .find((n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+  if (!textNode) return;
+  const [, lead, word] = textNode.textContent.match(/^(\s*)(\S+)/);
+  const rest = textNode.splitText(lead.length + word.length);
+  textNode.textContent = lead;
+
+  const sparkle = document.createElement('span');
+  sparkle.className = 'hero-split-sparkle';
+  sparkle.textContent = word;
+  const stars = document.createElement('span');
+  stars.className = 'hero-split-stars';
+  stars.setAttribute('aria-hidden', 'true');
+  [1, 2, 3].forEach((n) => {
+    const star = document.createElement('span');
+    star.className = `star-${n}`;
+    stars.append(star);
+  });
+  sparkle.append(stars);
+  rest.before(sparkle);
+
+  // two frames: the stars are painted transparent first, so the fade-in transition runs
+  requestAnimationFrame(() => requestAnimationFrame(() => sparkle.classList.add('is-active')));
+}
+
 export default function decorate(block) {
   const media = document.createElement('div');
   media.className = 'hero-split-media';
@@ -126,6 +156,9 @@ export default function decorate(block) {
     ctas[0].before(actions);
     actions.append(...ctas);
   }
+
+  const heading = content.querySelector('h1, h2');
+  if (heading) decorateSparkle(heading);
 
   block.replaceChildren(content);
   const pic = media.querySelector('picture') || media.querySelector('img');
