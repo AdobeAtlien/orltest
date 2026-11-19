@@ -287,6 +287,12 @@ main > .section > div + div {
   margin-top: 40px;
 }
 
+/* the hero is full-bleed (as the source): its image runs to the right edge at any width */
+main > .section > .hero-split-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
 main > .section:first-of-type {
   margin-top: 0;
 }

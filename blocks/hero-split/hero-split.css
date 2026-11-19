@@ -1,9 +1,9 @@
-/* hero-split: values measured from the source hero-primary (375 / 1440) */
+/* hero-split: values measured from the source hero-primary (375 / 1280 / 1440 / 1920) */
 
-/* mobile (base): stacked, centred copy, full-bleed media */
+/* mobile (base): stacked, centred copy, full-bleed media (the wrapper is full-bleed, see styles.css) */
 .hero-split {
   display: block;
-  margin: 0 calc(-1 * var(--content-padding)) 60px;
+  margin: 0 0 60px;
   border-top: 0 solid;
   padding: 61px 0 0;
   color: var(--brand-gray-dark);
@@ -232,5 +232,135 @@ main .hero-split .hero-split-actions a:any-link:focus-visible {
   .hero-split .hero-split-media img {
     aspect-ratio: 656 / 783;
     border-radius: 200px 0 0 10px;
+  }
+}
+
+/*
+ * breakpoint-exception: from 1280px (80em) the source fixes the copy column at 676px and lets the
+ * media fill the rest of the viewport to its right edge (248:339, at most 87.02vh tall).
+ */
+@media (width >= 1280px) {
+  .hero-split.hero-split-has-media {
+    grid-template-columns: 676px minmax(0, 1fr);
+  }
+
+  .hero-split .hero-split-media {
+    padding-left: 96px;
+  }
+
+  .hero-split .hero-split-frame {
+    width: 100%;
+    max-height: 87.02vh;
+    margin-left: 0;
+    aspect-ratio: 248 / 339;
+  }
+
+  .hero-split .hero-split-frame picture,
+  .hero-split .hero-split-media img {
+    height: 100%;
+  }
+
+  .hero-split .hero-split-media img {
+    aspect-ratio: auto;
+  }
+}
+
+/* sparkle: three blue stars beside the heading's first word, fading in one after another */
+.hero-split .hero-split-sparkle {
+  position: relative;
+}
+
+.hero-split .hero-split-stars {
+  position: absolute;
+  top: -17px;
+  left: 100%;
+  width: 46px;
+  height: 31px;
+  translate: 3px;
+  pointer-events: none;
+}
+
+.hero-split .hero-split-stars span {
+  position: absolute;
+  aspect-ratio: 1;
+  background: url('/icons/star-blue.svg') center / contain no-repeat;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.3s;
+}
+
+.hero-split .hero-split-stars .star-1 {
+  bottom: 0;
+  left: 0;
+  width: 21px;
+}
+
+.hero-split .hero-split-stars .star-2 {
+  top: 0;
+  left: 18px;
+  width: 16px;
+  transition-delay: 0.5s;
+}
+
+.hero-split .hero-split-stars .star-3 {
+  top: 12px;
+  right: 0;
+  width: 16px;
+  transition-delay: 0.7s;
+}
+
+.hero-split .hero-split-sparkle.is-active .hero-split-stars span {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-split .hero-split-stars span {
+    transition: none;
+  }
+}
+
+/* breakpoint-exception: the source resizes the stars at 744px (46.5em) and 1280px (80em) */
+@media (width >= 744px) {
+  .hero-split .hero-split-stars {
+    top: -26px;
+    width: 72px;
+    height: 49px;
+    translate: -2px;
+  }
+
+  .hero-split .hero-split-stars .star-1 {
+    width: 32px;
+  }
+
+  .hero-split .hero-split-stars .star-2 {
+    left: 28px;
+    width: 25px;
+  }
+
+  .hero-split .hero-split-stars .star-3 {
+    top: 20px;
+    width: 16px;
+  }
+}
+
+@media (width >= 1280px) {
+  .hero-split .hero-split-stars {
+    top: -36px;
+    width: 100px;
+    height: 68px;
+    translate: 4px;
+  }
+
+  .hero-split .hero-split-stars .star-1 {
+    width: 45px;
+  }
+
+  .hero-split .hero-split-stars .star-2 {
+    left: 39px;
+    width: 34px;
+  }
+
+  .hero-split .hero-split-stars .star-3 {
+    top: 27px;
+    width: 22px;
   }
 }
