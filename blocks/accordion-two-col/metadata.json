@@ -1,0 +1,43 @@
+{
+  "variantName": "accordion-two-col",
+  "baseBlock": "accordion",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "FAQ accordion flowed into two columns",
+    "descriptions": [
+      "Centered H2 and intro; 20 outlined rounded FAQ items in two columns with blue chevrons; decorative orange and teal arcs at the edges (decoration, not a background)."
+    ],
+    "sectionMetadata": [
+      {
+        "section": "section-12",
+        "style": "centered"
+      }
+    ]
+  },
+  "contentPattern": {
+    "structure": "question cell | answer cell",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "title (label)",
+        "content: body, image, links"
+      ],
+      [
+        "...one row per item"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-12",
+      "sectionName": "Frequently Asked Questions About Orlando",
+      "description": "20 question/answer pairs laid out in two columns"
+    }
+  ],
+  "reuseGuidance": "Use for long FAQ lists; items are split evenly into two columns on desktop."
+}

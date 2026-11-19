@@ -1,0 +1,12 @@
+{
+  "type": "da",
+  "sites": {
+    "orltest": {
+      "previewOrg": "adobeatlien",
+      "previewSite": "orltest",
+      "contentHostUrl": "https://content.da.live/adobeatlien/orltest/",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json",
+      "botProtected": true
+    }
+  }
+}

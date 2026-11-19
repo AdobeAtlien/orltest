@@ -1,0 +1,101 @@
+/*
+ * Visit Orlando brand tokens.
+ * Measured from https://www.visitorlando.com/ (computed styles, 1280px and 390px viewports).
+ */
+
+:root {
+  /* palette */
+  --brand-blue: #2040b7;
+  --brand-blue-dark: #062e8b;
+  --brand-teal: #1f979d;
+  --brand-teal-dark: #157f85;
+  --brand-teal-panel: #1b7f84;
+  --brand-orange: #ff7826;
+  --brand-red: #b01d17;
+  --brand-black: #000;
+  --brand-white: #fff;
+  --brand-gray-dark: #404040;
+  --brand-gray-darker: #1d1f1f;
+  --brand-gray-light: #e6e8ea;
+
+  /* semantic colors */
+  --background-color: var(--brand-white);
+  --text-color: var(--brand-gray-dark);
+  --heading-color: var(--brand-black);
+  --link-color: var(--brand-blue);
+  --link-hover-color: var(--brand-blue-dark);
+  --light-color: var(--brand-gray-light);
+  --dark-color: var(--brand-blue);
+
+  /* fonts */
+  --body-font-family: roboto, roboto-fallback, sans-serif;
+  --heading-font-family: roboto, roboto-fallback, sans-serif;
+  --display-font-family: brandon-grotesque, brandon-fallback, sans-serif;
+
+  /* body sizes (mobile) */
+  --body-font-size-l: 16px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-line-height: 1.5;
+  --body-letter-spacing: 0.02em;
+
+  /* heading sizes (mobile) */
+  --heading-font-size-xxl: 40px;
+  --heading-font-size-xl: 40px;
+  --heading-font-size-l: 30px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
+  --heading-line-height: 1.2;
+  --heading-letter-spacing: 0.02em;
+
+  /* buttons */
+  --button-font-size: 16px;
+  --button-padding: 16px 20px;
+  --button-border-width: 3px;
+  --button-radius: 8px;
+  --button-transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+
+  /* layout */
+  --content-max-width: 1280px;
+  --content-padding: 20px;
+  --heading-max-width: 736px;
+  --section-spacing: 48px;
+  --nav-height: 82px;
+
+  /* shapes */
+  --radius-panel: 75px;
+  --radius-panel-large: 100px;
+  --radius-card: 20px;
+  --shadow-card: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+}
+
+@media (width >= 640px) {
+  :root {
+    --content-padding: 80px;
+  }
+}
+
+@media (width >= 1024px) {
+  :root {
+    /* body sizes (desktop) */
+    --body-font-size-l: 20px;
+    --body-font-size-m: 16px;
+    --body-font-size-s: 14px;
+
+    /* heading sizes (desktop) */
+    --heading-font-size-xxl: 90px;
+    --heading-font-size-xl: 60px;
+    --heading-font-size-l: 30px;
+    --heading-font-size-m: 24px;
+    --heading-font-size-s: 20px;
+    --heading-font-size-xs: 18px;
+
+    /* buttons */
+    --button-font-size: 20px;
+    --button-padding: 20px 30px;
+    --section-spacing: 60px;
+  }
+}
+

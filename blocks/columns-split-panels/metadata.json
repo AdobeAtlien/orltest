@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-split-panels",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "two half-width promo panels, the second a colored panel with a rounded corner",
+    "descriptions": [
+      "Light grey band; left half 'Free Planning Help' (black heading, text, blue 'Schedule Now' button) on grey; right half a royal-blue panel with a rounded top-left corner holding white 'Fun for Everyone', text and white 'Browse Events' button. Geo-targeted dynamic variation (Default shown)."
+    ],
+    "sectionMetadata": [
+      {
+        "section": "section-14",
+        "style": "light-grey"
+      }
+    ]
+  },
+  "contentPattern": {
+    "structure": "one row, one cell per panel (heading, text, CTA)",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "one cell per column: text, images, links"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-14",
+      "sectionName": "Free Planning Help / Fun for Everyone",
+      "description": "Two promo panels side by side: Free Planning Help | Fun for Everyone"
+    }
+  ],
+  "reuseGuidance": "Use for two side-by-side promo panels of different emphasis."
+}

@@ -10,6 +10,8 @@ import {
   loadSections,
   loadCSS,
   buildBlock,
+  readBlockConfig,
+  toClassName,
 } from './aem.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
@@ -143,6 +145,29 @@ function decorateButtons(main) {
 }
 
 /**
+ * Applies any Section Metadata table still in the markup to its section, the way the
+ * delivery pipeline does: `style` values become section classes, other keys become
+ * data attributes. Delivered pages arrive with the tables already applied, so this
+ * only acts on raw authored markup (e.g. local previews of imported content).
+ * @param {Element} main The main element
+ */
+function applySectionMetadata(main) {
+  main.querySelectorAll(':scope > div > div.section-metadata').forEach((meta) => {
+    const section = meta.parentElement;
+    const config = readBlockConfig(meta);
+    Object.entries(config).forEach(([key, value]) => {
+      if (key === 'style') {
+        String(value).split(',').map((v) => toClassName(v.trim())).filter(Boolean)
+          .forEach((cls) => section.classList.add(cls));
+      } else {
+        section.dataset[key.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = value;
+      }
+    });
+    meta.remove();
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -150,6 +175,7 @@ function decorateButtons(main) {
 export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
+  applySectionMetadata(main);
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
@@ -180,6 +206,26 @@ async function loadEager(doc) {
 }
 
 /**
+ * Gives generic card links ("Read more", "Learn more", ...) an accessible name that says
+ * where they go, by appending the card's heading as visually hidden text.
+ * @param {Element} main The main element
+ */
+function describeGenericLinks(main) {
+  const generic = /^(read|learn|see|find out|discover) more$|^(explore|more|details)$/i;
+  main.querySelectorAll('a[href]').forEach((a) => {
+    if (!generic.test(a.textContent.trim()) || a.querySelector('.visually-hidden')) return;
+    const card = a.closest('li, [class*="card"], [class*="item"]');
+    const heading = card?.querySelector('h2, h3, h4, h5, h6');
+    const title = heading?.textContent.trim();
+    if (!title || heading.contains(a)) return;
+    const hidden = document.createElement('span');
+    hidden.className = 'visually-hidden';
+    hidden.textContent = `: ${title}`;
+    a.append(hidden);
+  });
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
@@ -188,6 +234,7 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+  describeGenericLinks(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

@@ -1,0 +1,154 @@
+/* Cards Mosaic: photo tiles of mixed sizes with an overlaid label */
+.cards-mosaic {
+  color: rgb(64 64 64);
+}
+
+.cards-mosaic > ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 238.6px;
+  gap: 20px;
+}
+
+.cards-mosaic .cards-mosaic-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+}
+
+/* mobile: the first tile spans the full width */
+.cards-mosaic .cards-mosaic-tile:first-child {
+  grid-column: span 2;
+}
+
+.cards-mosaic .cards-mosaic-tile-image,
+.cards-mosaic .cards-mosaic-tile-image picture {
+  position: absolute;
+  inset: 0;
+  line-height: 0;
+}
+
+.cards-mosaic .cards-mosaic-tile-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 40%, rgb(0 0 0 / 50%) 100%);
+}
+
+.cards-mosaic .cards-mosaic-tile-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: rgb(255 255 255);
+}
+
+.cards-mosaic .cards-mosaic-tile-body > * {
+  margin: 0;
+}
+
+.cards-mosaic .cards-mosaic-tile-no-image .cards-mosaic-tile-body {
+  padding: 12px;
+}
+
+/* the link covers the whole tile; the label sits centred near the bottom */
+.cards-mosaic a.cards-mosaic-tile-link:any-link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: rgb(32 64 183);
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-decoration: none;
+}
+
+.cards-mosaic .cards-mosaic-tile-label {
+  margin: 0 12px 24px;
+  color: rgb(255 255 255);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 19.2px;
+  letter-spacing: normal;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* photo credit: vertical along the right edge on mobile */
+.cards-mosaic .cards-mosaic-tile-body > p:has(> em) {
+  position: absolute;
+  right: 2px;
+  bottom: 26px;
+  writing-mode: vertical-rl;
+  color: rgb(255 255 255);
+  font-family: var(--body-font-family);
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: normal;
+  pointer-events: none;
+}
+
+.cards-mosaic .cards-mosaic-tile-body em {
+  font-style: normal;
+}
+
+@media (width >= 900px) {
+  .cards-mosaic > ul {
+    max-width: 1120px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 300px;
+    gap: 31px 30px;
+  }
+
+  .cards-mosaic .cards-mosaic-tile:first-child {
+    grid-column: auto;
+  }
+
+  /* source mosaic rhythm of 11 tiles: medium, medium, wide, tall, tall,
+     small, small, tall, wide, medium, medium */
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 1),
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 2),
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 10),
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 11) {
+    grid-column: span 3;
+  }
+
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 3),
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 9) {
+    grid-column: span 4;
+  }
+
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 4),
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 5),
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 8) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 6),
+  .cards-mosaic .cards-mosaic-tile:nth-child(11n + 7) {
+    grid-column: span 2;
+  }
+
+  .cards-mosaic .cards-mosaic-tile-label {
+    margin: 0 12px 42px;
+    font-size: 28px;
+    line-height: 33.6px;
+  }
+
+  .cards-mosaic .cards-mosaic-tile-body > p:has(> em) {
+    right: 12px;
+    bottom: 8px;
+    writing-mode: horizontal-tb;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

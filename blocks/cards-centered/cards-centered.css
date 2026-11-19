@@ -1,0 +1,167 @@
+/* cards-centered: rounded image above a centered title, text and arrow link */
+
+.cards-centered {
+  color: var(--brand-gray-dark);
+}
+
+.cards-centered > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1120px;
+  margin-inline: auto;
+}
+
+.cards-centered .cards-centered-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cards-centered .cards-centered-card-image {
+  position: relative;
+  line-height: 0;
+}
+
+.cards-centered .cards-centered-card-image picture {
+  display: block;
+}
+
+.cards-centered .cards-centered-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 545 / 400;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  background-color: var(--brand-white);
+}
+
+/* "Sponsored" paragraph turned into a badge by the block JS */
+.cards-centered .cards-centered-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  margin: 0;
+  padding: 4px 12px;
+  border-radius: var(--button-radius);
+  background-color: var(--brand-white);
+  color: var(--brand-gray-dark);
+  font-size: var(--body-font-size-xs);
+  line-height: 16px;
+  letter-spacing: normal;
+}
+
+.cards-centered .cards-centered-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 16px;
+}
+
+.cards-centered .cards-centered-card-body h1,
+.cards-centered .cards-centered-card-body h2,
+.cards-centered .cards-centered-card-body h3,
+.cards-centered .cards-centered-card-body h4 {
+  margin: 14px 0 12px;
+  color: var(--brand-black);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+.cards-centered .cards-centered-card-body :is(h1, h2, h3, h4) a:any-link {
+  color: var(--brand-black);
+}
+
+.cards-centered .cards-centered-card-body p {
+  margin: 0;
+  color: var(--brand-gray-dark);
+  font-size: var(--body-font-size-s);
+  line-height: 21px;
+  letter-spacing: normal;
+}
+
+/* CTA: last paragraph holding only a link, rendered as an uppercase arrow link */
+.cards-centered .cards-centered-card-body > p:last-child:has(> a:only-child) {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.cards-centered .cards-centered-card-body > p:last-child > a:only-child:any-link {
+  position: relative;
+  display: inline-flex;
+  padding: 2px 32px 0 0;
+  color: var(--brand-blue);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.cards-centered .cards-centered-card-body > p:last-child > a:only-child::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  background: url('/icons/arrow-md-blue.svg') center / contain no-repeat;
+}
+
+.cards-centered .cards-centered-card-body > p:last-child > a:only-child:hover,
+.cards-centered .cards-centered-card-body > p:last-child > a:only-child:focus-visible {
+  color: var(--brand-blue-dark);
+  text-decoration: none;
+}
+
+.cards-centered .cards-centered-card-body > p:last-child > a:only-child:hover::after,
+.cards-centered .cards-centered-card-body > p:last-child > a:only-child:focus-visible::after {
+  background-image: url('/icons/arrow-md-blue-dark.svg');
+}
+
+@media (width >= 900px) {
+  .cards-centered > ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .cards-centered .cards-centered-card-body h1,
+  .cards-centered .cards-centered-card-body h2,
+  .cards-centered .cards-centered-card-body h3,
+  .cards-centered .cards-centered-card-body h4 {
+    margin: 26px 0 14px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .cards-centered .cards-centered-card-body p {
+    font-size: var(--body-font-size-m);
+    line-height: 24px;
+  }
+
+  .cards-centered .cards-centered-card-body > p:last-child:has(> a:only-child) {
+    padding-top: 30px;
+  }
+
+  .cards-centered .cards-centered-card-body > p:last-child > a:only-child:any-link {
+    padding-right: 39px;
+    font-size: 22px;
+    line-height: 22px;
+  }
+
+  .cards-centered .cards-centered-card-body > p:last-child > a:only-child::after {
+    width: 24px;
+    height: 24px;
+  }
+}

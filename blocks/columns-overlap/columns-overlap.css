@@ -1,0 +1,239 @@
+/*
+ * Columns Overlap: photo with a blue panel overlapping it.
+ * The source widget spans the full viewport; the negative margin + matching
+ * padding gives the block the same full-bleed box while keeping its content
+ * on the section's content edges.
+ */
+.columns-overlap {
+  isolation: isolate;
+  margin: 0 calc(-1 * var(--content-padding));
+  border: 0 solid;
+  color: var(--text-color);
+}
+
+.columns-overlap .columns-overlap-row {
+  display: flex;
+  flex-direction: column;
+  padding: 8px var(--content-padding) 37px;
+}
+
+/* media */
+.columns-overlap .columns-overlap-media {
+  position: relative;
+  line-height: 0;
+}
+
+.columns-overlap .columns-overlap-media p {
+  margin: 0;
+}
+
+.columns-overlap .columns-overlap-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card) var(--radius-panel) var(--radius-card) var(--radius-card);
+}
+
+.columns-overlap .columns-overlap-media .columns-overlap-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--radius-card) 0;
+  padding: 12px 15px;
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 19.2px;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
+
+/* panel */
+.columns-overlap .columns-overlap-panel {
+  position: relative;
+  margin: -53px 31px 0;
+  border-radius: var(--radius-card);
+  padding: 25px 20px 30px;
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+}
+
+/* decorative teal ring centred on the panel's bottom-right corner, behind it */
+.columns-overlap .columns-overlap-panel::after {
+  content: '';
+  position: absolute;
+  right: -31px;
+  bottom: -37.5px;
+  z-index: -1;
+  box-sizing: border-box;
+  width: 75px;
+  height: 75px;
+  border: 13px solid var(--brand-teal);
+  border-radius: 50%;
+}
+
+.columns-overlap .columns-overlap-panel > :first-child {
+  margin-top: 0;
+}
+
+.columns-overlap .columns-overlap-panel > :last-child {
+  margin-bottom: 0;
+}
+
+.columns-overlap .columns-overlap-panel h1,
+.columns-overlap .columns-overlap-panel h2,
+.columns-overlap .columns-overlap-panel h3,
+.columns-overlap .columns-overlap-panel h4 {
+  margin: 0 0 16px;
+  color: var(--brand-white);
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-xl);
+  font-weight: 700;
+  line-height: var(--heading-line-height);
+  letter-spacing: normal;
+}
+
+.columns-overlap .columns-overlap-panel h1 a:any-link,
+.columns-overlap .columns-overlap-panel h2 a:any-link,
+.columns-overlap .columns-overlap-panel h3 a:any-link,
+.columns-overlap .columns-overlap-panel h4 a:any-link {
+  color: var(--brand-white);
+}
+
+.columns-overlap .columns-overlap-panel p {
+  margin: 0;
+  font-size: var(--body-font-size-l);
+  line-height: var(--body-line-height);
+  letter-spacing: normal;
+}
+
+.columns-overlap .columns-overlap-panel a:any-link:not(.columns-overlap-cta) {
+  color: var(--brand-white);
+}
+
+.columns-overlap .columns-overlap-panel a:hover:not(.columns-overlap-cta) {
+  color: var(--brand-white);
+}
+
+/* CTA: white button -> outlined white on hover */
+.columns-overlap .columns-overlap-panel p.columns-overlap-cta-wrapper {
+  margin-top: 30px;
+}
+
+main .columns-overlap a.columns-overlap-cta:any-link {
+  box-sizing: border-box;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  border: var(--button-border-width) solid var(--brand-white);
+  border-radius: var(--button-radius);
+  padding: 16px 20px;
+  background-color: var(--brand-white);
+  color: var(--brand-blue);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 11.2px;
+  letter-spacing: normal;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: var(--button-transition);
+}
+
+main .columns-overlap a.columns-overlap-cta:hover,
+main .columns-overlap a.columns-overlap-cta:focus-visible {
+  border-color: var(--brand-white);
+  background-color: transparent;
+  color: var(--brand-white);
+  text-decoration: none;
+}
+
+main .columns-overlap a.columns-overlap-cta:focus-visible {
+  outline: 2px solid var(--brand-white);
+  outline-offset: 2px;
+}
+
+/* no photo: plain panel */
+.columns-overlap .columns-overlap-no-media .columns-overlap-panel {
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  /* 1120px track: photo 0-641, panel 460-1108 (source geometry) */
+  .columns-overlap .columns-overlap-row {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 460fr) minmax(0, 181fr) minmax(0, 467fr)
+      minmax(0, 12fr);
+    align-items: start;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--content-padding) 60px;
+  }
+
+  .columns-overlap .columns-overlap-media {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+
+  .columns-overlap .columns-overlap-media img {
+    border-radius: var(--radius-card) var(--radius-panel-large) var(--radius-card) var(--radius-card);
+  }
+
+  .columns-overlap .columns-overlap-media .columns-overlap-badge {
+    padding: 15px 16px;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .columns-overlap .columns-overlap-panel {
+    grid-column: 2 / 4;
+    grid-row: 1;
+    margin: 134px 0 0;
+    padding: 40px 65px 45px;
+  }
+
+  .columns-overlap .columns-overlap-panel::after {
+    right: -75px;
+    bottom: -75px;
+    width: 150px;
+    height: 150px;
+    border-width: 27px;
+  }
+
+  .columns-overlap .columns-overlap-panel p.columns-overlap-cta-wrapper {
+    margin-top: 40px;
+  }
+
+  main .columns-overlap a.columns-overlap-cta:any-link {
+    padding: 20px 30px;
+  }
+
+  /* text cell authored first: mirror the layout */
+  .columns-overlap .columns-overlap-reversed {
+    grid-template-columns:
+      minmax(0, 12fr) minmax(0, 467fr) minmax(0, 181fr)
+      minmax(0, 460fr);
+  }
+
+  .columns-overlap .columns-overlap-reversed .columns-overlap-media {
+    grid-column: 3 / 5;
+  }
+
+  .columns-overlap .columns-overlap-reversed .columns-overlap-panel {
+    grid-column: 1 / 3;
+  }
+
+  .columns-overlap .columns-overlap-reversed .columns-overlap-panel::after {
+    right: auto;
+    left: -75px;
+  }
+
+  .columns-overlap .columns-overlap-no-media .columns-overlap-panel {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+}

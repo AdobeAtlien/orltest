@@ -1,0 +1,39 @@
+{
+  "variantName": "widget-ugc-gallery",
+  "baseBlock": "widget",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "lazy-loaded third-party user-generated social photo gallery",
+    "descriptions": [
+      "Centered H2 '#VisitOrlando' and a line of text; below, a lazy-loaded third-party UGC photo gallery (Instagram-style tiles with author names), empty in the static capture."
+    ],
+    "sectionMetadata": [
+      {
+        "section": "section-7",
+        "style": "centered"
+      }
+    ]
+  },
+  "contentPattern": {
+    "structure": "one cell with a link to a widget page under /widgets/, a gallery script URL (.js; ?id= becomes the script id, other params data attributes), or an embeddable gallery URL (iframe)",
+    "rows": [
+      [
+        "block name"
+      ],
+      [
+        "link to a widget page under the widgets folder (query params become data attributes)"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-7",
+      "sectionName": "#VisitOrlando social gallery",
+      "description": "Third-party user-generated-content social photo gallery (lazy-loaded script)"
+    }
+  ],
+  "reuseGuidance": "Use for third-party social/UGC galleries. Section heading and intro stay as default content above."
+}

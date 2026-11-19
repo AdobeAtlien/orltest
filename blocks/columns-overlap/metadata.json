@@ -1,0 +1,34 @@
+{
+  "variantName": "columns-overlap",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "sponsored promo: large photo with an overlapping colored text panel",
+    "descriptions": [
+      "Large rounded photo with 'Sponsored' badge on the left; a royal-blue rounded text panel overlaps the photo on the right with white H2, paragraph and white 'Save Now' button; teal ring decoration."
+    ],
+    "sectionMetadata": []
+  },
+  "contentPattern": {
+    "structure": "image cell (optional \"Sponsored\" paragraph) | text cell (heading, paragraph, CTA)",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "one cell per column: text, images, links"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-4",
+      "sectionName": "Give the Gift of Memories (sponsored promo)",
+      "description": "Sponsored promo: photo | blue panel with H2, paragraph, Save Now CTA (geo dynamic variation, Default shown)"
+    }
+  ],
+  "reuseGuidance": "Use for a single photo + overlapping text panel promo. Either cell order works."
+}

@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-banner-ad",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "partner banner ad: photo | colored center panel with heading, CTA and logo | photo",
+    "descriptions": [
+      "Centered H2 + intro; two sponsored image cards with 'Sponsored' badge, centered title, text and arrow link (same card style as section 3); then the Enterprise partner banner ad: photo | tall royal-blue rounded panel with white heading 'Enterprise Is Nearby', 'Book Now' button and enterprise logo | photo."
+    ],
+    "sectionMetadata": [
+      {
+        "section": "section-13",
+        "style": "centered"
+      }
+    ]
+  },
+  "contentPattern": {
+    "structure": "image cell | text cell (heading, CTA, logo image) | image cell",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "one cell per column: text, images, links"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-13",
+      "sectionName": "More to Explore (sponsored)",
+      "description": "Partner banner ad: image | blue panel with heading, CTA, logo | image"
+    }
+  ],
+  "reuseGuidance": "Use for three-part partner banners; on mobile the photos stack above and below the panel."
+}
