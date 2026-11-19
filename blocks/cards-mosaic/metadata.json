@@ -1,0 +1,43 @@
+{
+  "variantName": "cards-mosaic",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "mosaic grid of category photo tiles with overlaid labels",
+    "descriptions": [
+      "Centered H2 and intro; mosaic grid of 11 rounded photo tiles of differing sizes with white uppercase overlay labels and photo credits."
+    ],
+    "sectionMetadata": [
+      {
+        "section": "section-5",
+        "style": "centered"
+      }
+    ]
+  },
+  "contentPattern": {
+    "structure": "image cell | text cell (label link, optional photo credit)",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "image",
+        "text: title heading, description, CTA link"
+      ],
+      [
+        "...one row per card"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-5",
+      "sectionName": "Uncover the Wonders of Your Ultimate Destination",
+      "description": "Mosaic of 11 category tiles (Theme Parks, Water Parks, Attractions, Food & Dining, Drinks & Nightlife, Arts & Entertainment, Nature & Outdoors, Shopping, Orlando for All, Relaxation & Spas, Sports), each image + label linking to a category page"
+    }
+  ],
+  "reuseGuidance": "Use for category tile mosaics; tile sizes follow a repeating rhythm."
+}

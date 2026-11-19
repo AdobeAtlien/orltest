@@ -1,0 +1,242 @@
+/* columns-banner-ad: photo | blue panel (heading, CTA, logo) | photo partner banner */
+
+.columns-banner-ad {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+  color: var(--brand-gray-dark);
+}
+
+/* mobile: photos stacked above and below the panel, which overlaps both by 30px */
+.columns-banner-ad .columns-banner-ad-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px 30px;
+}
+
+/* partner logo inside the panel */
+.columns-banner-ad .columns-banner-ad-logo {
+  line-height: 0;
+}
+
+.columns-banner-ad .columns-banner-ad-logo picture {
+  display: block;
+}
+
+.columns-banner-ad .columns-banner-ad-logo img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+.columns-banner-ad .columns-banner-ad-media {
+  position: relative;
+  width: 100%;
+  max-height: 320px;
+  line-height: 0;
+}
+
+.columns-banner-ad .columns-banner-ad-media:first-child {
+  align-self: end;
+  top: 30px;
+  margin-top: -30px;
+}
+
+.columns-banner-ad .columns-banner-ad-media:last-child {
+  align-self: start;
+  bottom: 30px;
+  margin-bottom: -30px;
+}
+
+.columns-banner-ad .columns-banner-ad-media p {
+  margin: 0;
+}
+
+.columns-banner-ad .columns-banner-ad-media picture {
+  display: block;
+}
+
+.columns-banner-ad .columns-banner-ad-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: cover;
+  background-color: var(--brand-white);
+  box-shadow: 0 10px 15px 0 rgb(0 0 0 / 15%);
+}
+
+.columns-banner-ad .columns-banner-ad-media:first-child img {
+  border-radius: 20px 20px 0 0;
+}
+
+.columns-banner-ad .columns-banner-ad-media:last-child img {
+  border-radius: 0 0 20px 20px;
+}
+
+/* "Sponsored" label moved over the first photo by the block JS */
+.columns-banner-ad .columns-banner-ad-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  padding: 12px 15px;
+  border-radius: 20px 0 12px;
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 19.2px;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.columns-banner-ad .columns-banner-ad-panel {
+  box-sizing: border-box;
+  position: relative;
+  right: 5%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 110%;
+  padding: 30px 15px;
+  border-radius: 20px;
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+  text-align: center;
+}
+
+.columns-banner-ad .columns-banner-ad-panel > * {
+  margin: 0;
+}
+
+.columns-banner-ad .columns-banner-ad-panel :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--brand-white);
+  font-family: var(--heading-font-family);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+/* CTA: white button with blue text; blue fill with white text on hover */
+.columns-banner-ad .columns-banner-ad-cta {
+  line-height: 0;
+}
+
+main .columns-banner-ad .columns-banner-ad-cta a:any-link {
+  box-sizing: border-box;
+  display: block;
+  width: fit-content;
+  padding: 13px 17px;
+  border: 3px solid var(--brand-white);
+  border-radius: var(--button-radius);
+  background-color: var(--brand-white);
+  color: var(--brand-blue);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: var(--button-transition);
+}
+
+main .columns-banner-ad .columns-banner-ad-cta a:any-link:hover,
+main .columns-banner-ad .columns-banner-ad-cta a:any-link:focus-visible {
+  border-color: var(--brand-white);
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+  text-decoration: none;
+}
+
+main .columns-banner-ad .columns-banner-ad-cta a:any-link:focus-visible {
+  outline: 2px solid var(--brand-white);
+  outline-offset: 3px;
+}
+
+@media (width >= 640px) {
+  .columns-banner-ad .columns-banner-ad-media,
+  .columns-banner-ad .columns-banner-ad-media img {
+    max-height: 420px;
+  }
+
+  .columns-banner-ad .columns-banner-ad-label {
+    padding: 15px 20px;
+    font-size: 20px;
+  }
+
+  .columns-banner-ad .columns-banner-ad-panel {
+    padding: 45px 65px;
+    border-radius: 50px 20px 20px;
+  }
+
+  .columns-banner-ad .columns-banner-ad-panel :is(h1, h2, h3, h4, h5, h6) {
+    font-size: 50px;
+    line-height: 60px;
+  }
+
+  main .columns-banner-ad .columns-banner-ad-cta a:any-link {
+    padding: 17px 27px;
+    font-size: 20px;
+  }
+}
+
+/* desktop: photo | panel | photo side by side (source switches at 1024px) */
+@media (width >= 1024px) {
+  .columns-banner-ad .columns-banner-ad-row {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-template-columns: none;
+    padding: 40px 0;
+  }
+
+  .columns-banner-ad .columns-banner-ad-media,
+  .columns-banner-ad .columns-banner-ad-media:first-child,
+  .columns-banner-ad .columns-banner-ad-media:last-child {
+    align-self: center;
+    top: auto;
+    bottom: auto;
+    margin: 0;
+  }
+
+  .columns-banner-ad .columns-banner-ad-media img {
+    max-height: none;
+    aspect-ratio: 400 / 426;
+  }
+
+  .columns-banner-ad .columns-banner-ad-media:first-child img {
+    border-radius: 20px 0 0 20px;
+  }
+
+  .columns-banner-ad .columns-banner-ad-media:last-child img {
+    border-radius: 0 20px 20px 0;
+  }
+
+  .columns-banner-ad .columns-banner-ad-panel {
+    right: auto;
+    gap: 40px;
+    width: 400px;
+    min-height: 474px;
+    padding: 45px;
+  }
+
+  .columns-banner-ad .columns-banner-ad-panel :is(h1, h2, h3, h4, h5, h6) {
+    font-size: 60px;
+    line-height: 72px;
+  }
+}

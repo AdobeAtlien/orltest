@@ -1,0 +1,54 @@
+{
+  "variantName": "cards-centered",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "grid of image cards with centered title, text and arrow link",
+    "descriptions": [
+      "Teal band (with decorative rings) behind the heading and the top half of the cards; centered white H2 + intro; two image cards with centered title, text and 'Learn More' arrow link.",
+      "Centered H2 + intro; two sponsored image cards with 'Sponsored' badge, centered title, text and arrow link (same card style as section 3); then the Enterprise partner banner ad: photo | tall royal-blue rounded panel with white heading 'Enterprise Is Nearby', 'Book Now' button and enterprise logo | photo."
+    ],
+    "sectionMetadata": [
+      {
+        "section": "section-3",
+        "style": "teal, centered"
+      },
+      {
+        "section": "section-13",
+        "style": "centered"
+      }
+    ]
+  },
+  "contentPattern": {
+    "structure": "image cell | text cell (optional \"Sponsored\" paragraph, title heading, description, CTA link)",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "image",
+        "text: title heading, description, CTA link"
+      ],
+      [
+        "...one row per card"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-3",
+      "sectionName": "Who Should Visit Orlando? Everyone.",
+      "description": "Two cards: Orlando For Adults, Visiting With Kids (image, title, text, Learn More link)"
+    },
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-13",
+      "sectionName": "More to Explore (sponsored)",
+      "description": "Two sponsored offer cards (image, title, text, Learn More / Book Now)"
+    }
+  ],
+  "reuseGuidance": "Use for 2-4 linked promo cards without a box. A \"Sponsored\" paragraph becomes an image badge."
+}

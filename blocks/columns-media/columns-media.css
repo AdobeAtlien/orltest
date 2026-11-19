@@ -1,0 +1,149 @@
+.columns-media {
+  color: var(--text-color);
+
+  /* the ring decoration may run into the section gutter, not past the viewport */
+  overflow: clip;
+  overflow-clip-margin: var(--content-padding);
+}
+
+.columns-media .columns-media-row {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 8px 0 50px;
+}
+
+.columns-media .columns-media-img-col {
+  position: relative;
+  isolation: isolate;
+  order: 0;
+  line-height: 0;
+}
+
+.columns-media .columns-media-text-col {
+  order: 1;
+}
+
+.columns-media .columns-media-img-col p {
+  margin: 0;
+}
+
+.columns-media .columns-media-img-col img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card) var(--radius-panel) var(--radius-card) var(--radius-card);
+  background-color: var(--brand-white);
+}
+
+/* orange ring peeking out behind the image's lower right corner */
+.columns-media .columns-media-img-col::before {
+  content: '';
+  position: absolute;
+  right: -49px;
+  bottom: -30px;
+  z-index: -1;
+  box-sizing: border-box;
+  width: 120px;
+  height: 120px;
+  border: 21px solid var(--brand-orange);
+  border-radius: 50%;
+}
+
+.columns-media .columns-media-text-col h2 {
+  margin: 0 0 12px;
+  color: var(--heading-color);
+  letter-spacing: normal;
+}
+
+.columns-media .columns-media-text-col h2 a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.columns-media .columns-media-text-col p {
+  margin: 0;
+  font-size: var(--body-font-size-l);
+  line-height: var(--body-line-height);
+  letter-spacing: normal;
+  color: var(--text-color);
+}
+
+.columns-media .columns-media-text-col p.columns-media-cta-wrapper {
+  margin-top: 30px;
+}
+
+main .columns-media a.columns-media-cta:any-link {
+  box-sizing: border-box;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  border: var(--button-border-width) solid var(--brand-blue);
+  border-radius: var(--button-radius);
+  padding: var(--button-padding);
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 0.7;
+  letter-spacing: normal;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: var(--button-transition);
+}
+
+main .columns-media a.columns-media-cta:any-link:hover,
+main .columns-media a.columns-media-cta:any-link:focus-visible {
+  background-color: transparent;
+  color: var(--brand-blue);
+}
+
+main .columns-media a.columns-media-cta:any-link:focus-visible {
+  outline: 2px solid var(--brand-blue-dark);
+  outline-offset: 3px;
+}
+
+@media (width >= 900px) {
+  .columns-media .columns-media-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 0 120px;
+  }
+
+  .columns-media .columns-media-row > div {
+    box-sizing: border-box;
+    flex: 0 0 50%;
+    min-width: 0;
+    order: unset;
+  }
+
+  /* text sits a little below the image's centre line, as on the source */
+  .columns-media .columns-media-text-col {
+    padding: 59px 95px 0 0;
+  }
+
+  .columns-media .columns-media-img-col + .columns-media-text-col {
+    padding: 59px 0 0 95px;
+  }
+
+  .columns-media .columns-media-img-col img {
+    border-radius: var(--radius-panel-large) var(--radius-card) var(--radius-card);
+  }
+
+  .columns-media .columns-media-img-col::before {
+    right: -126px;
+    bottom: -83px;
+    width: 252px;
+    height: 252px;
+    border-width: 45px;
+  }
+
+  .columns-media .columns-media-text-col p.columns-media-cta-wrapper {
+    margin-top: 40px;
+  }
+}

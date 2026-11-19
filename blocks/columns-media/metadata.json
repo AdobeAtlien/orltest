@@ -1,0 +1,34 @@
+{
+  "variantName": "columns-media",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "text with CTA beside a rounded image",
+    "descriptions": [
+      "Two columns: left H2 'Interactive Map', paragraph and blue 'View Interactive Map' button, vertically centered; right a rounded illustrated map image with an orange ring decoration."
+    ],
+    "sectionMetadata": []
+  },
+  "contentPattern": {
+    "structure": "text cell (heading, paragraph, CTA) | image cell, either order",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "one cell per column: text, images, links"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-10",
+      "sectionName": "Interactive Map",
+      "description": "Text with CTA | map image"
+    }
+  ],
+  "reuseGuidance": "Use for a simple text + image two-column feature."
+}

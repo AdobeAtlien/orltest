@@ -1,0 +1,38 @@
+/*
+ * Source (.panel-ugc-lazyloader): full-bleed panel, no padding or margin of
+ * its own; the gallery sits 20px in from each edge (.inner) and the panel is
+ * 504px tall once the two-row gallery has rendered.
+ * The block cancels the section's side padding so it spans the section
+ * (1440px at a 1440px viewport, the full viewport on mobile).
+ */
+.widget-ugc-gallery {
+  display: block;
+  margin-inline: calc(-1 * var(--content-padding));
+}
+
+.widget-ugc-gallery .widget-ugc-gallery-caption {
+  margin-bottom: 16px;
+  padding-inline: var(--content-padding);
+  text-align: center;
+}
+
+.widget-ugc-gallery .widget-ugc-gallery-embed {
+  padding-inline: 20px;
+}
+
+/* reserve the gallery's height until the third-party script has rendered */
+.widget-ugc-gallery .widget-ugc-gallery-embed:not(:has(> :not(script))) {
+  min-height: 504px;
+}
+
+.widget-ugc-gallery .widget-ugc-gallery-embed iframe {
+  display: block;
+  width: 100%;
+  min-height: 600px;
+  border: 0;
+}
+
+.widget-ugc-gallery.widget-ugc-gallery-empty,
+.widget-ugc-gallery.widget-ugc-gallery-error .widget-ugc-gallery-embed {
+  display: none;
+}

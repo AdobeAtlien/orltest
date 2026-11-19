@@ -1,0 +1,37 @@
+{
+  "variantName": "hero-split",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "page-opening hero with heading, intro and CTAs beside a feature photo",
+    "descriptions": [
+      "White background; huge black uppercase H1 with sparkle icon, intro paragraph, primary filled and secondary outlined buttons on the left; rounded-corner photo on the right. Photo sits beside the text, not behind it."
+    ],
+    "sectionMetadata": []
+  },
+  "contentPattern": {
+    "structure": "one row with the image (optional), one row with heading, intro paragraph and CTA links (or a single row: image cell | text cell)",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "image (optional)"
+      ],
+      [
+        "title (heading), subheading, call-to-action links"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-1",
+      "sectionName": "Hero - Orlando Welcomes You",
+      "description": "H1 'Orlando Welcomes You', intro paragraph, CTAs 'Plan Your Visit' and 'Chat With OPAL AI', photo to the right"
+    }
+  ],
+  "reuseGuidance": "Use when the hero photo sits beside the text. For a photo behind the text use hero."
+}

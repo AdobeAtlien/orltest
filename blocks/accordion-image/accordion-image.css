@@ -1,0 +1,200 @@
+/* accordion-image: photo panel (offset orange backdrop) beside a list of accordion items */
+.accordion-image {
+  display: grid;
+  gap: 20px;
+  color: var(--brand-gray-dark);
+}
+
+/* photo panel */
+.accordion-image .accordion-image-media {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  margin-left: 20px;
+  line-height: 0;
+}
+
+.accordion-image .accordion-image-media::before {
+  content: '';
+  position: absolute;
+  inset: -20px 20px 20px -20px;
+  z-index: -1;
+  border-radius: 20px 5px 5px;
+  background-color: var(--brand-orange);
+}
+
+.accordion-image .accordion-image-slide {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+.accordion-image .accordion-image-slide-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.accordion-image .accordion-image-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 315 / 251;
+  object-fit: cover;
+  border-radius: 20px 20px 5px;
+  background-color: var(--brand-white);
+}
+
+/* accordion list */
+.accordion-image .accordion-image-items {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.accordion-image .accordion-image-item {
+  border: 2px solid var(--brand-black);
+  border-radius: 20px;
+  background-color: var(--brand-white);
+}
+
+.accordion-image .accordion-image-item-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--brand-white);
+  color: var(--brand-black);
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  text-align: left;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion-image .accordion-image-item-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-image .accordion-image-item-label > * {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+/* open/close indicator */
+.accordion-image .accordion-image-item-label::after {
+  content: '';
+  flex: 0 0 40px;
+  height: 40px;
+  background-color: var(--brand-blue);
+  mask: url('/icons/angle-down-white.svg') center / 20px auto no-repeat;
+  transition: transform 0.3s ease-in-out, background-color 0.3s;
+}
+
+.accordion-image .accordion-image-item-label:hover::after {
+  background-color: var(--brand-blue-dark);
+}
+
+.accordion-image .accordion-image-item[open] .accordion-image-item-label::after {
+  transform: rotate(180deg);
+}
+
+.accordion-image .accordion-image-item-label:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+/* item body */
+.accordion-image .accordion-image-item-body {
+  padding: 0 20px 20px;
+}
+
+.accordion-image .accordion-image-item-body p {
+  margin: 0 0 16px;
+  color: var(--brand-gray-dark);
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.28px;
+}
+
+.accordion-image .accordion-image-item-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* "Explore" arrow link */
+.accordion-image .accordion-image-item-body a:any-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 32px 0 0;
+  color: var(--brand-blue);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.accordion-image .accordion-image-item-body a:any-link::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  background: url('/icons/arrow-md-blue.svg') center / contain no-repeat;
+}
+
+.accordion-image .accordion-image-item-body a:any-link:hover,
+.accordion-image .accordion-image-item-body a:any-link:focus-visible {
+  color: var(--brand-blue-dark);
+  text-decoration: none;
+}
+
+.accordion-image .accordion-image-item-body a:any-link:hover::after,
+.accordion-image .accordion-image-item-body a:any-link:focus-visible::after {
+  background-image: url('/icons/arrow-md-blue-dark.svg');
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-image .accordion-image-slide,
+  .accordion-image .accordion-image-item-label::after {
+    transition: none;
+  }
+}
+
+@media (width >= 900px) {
+  .accordion-image {
+    padding: 0 80px 0 120px;
+  }
+
+  .accordion-image.accordion-image-has-media {
+    grid-template-columns: minmax(0, 480fr) minmax(0, 560fr);
+    align-items: start;
+    gap: 40px;
+  }
+
+  /* room for the photo's offset backdrop */
+  .accordion-image > .accordion-image-media,
+  .accordion-image > .accordion-image-items {
+    margin: 40px 0;
+  }
+
+  .accordion-image .accordion-image-media::before {
+    inset: -40px 40px 40px -40px;
+  }
+
+  .accordion-image .accordion-image-slide img {
+    aspect-ratio: 1;
+  }
+}

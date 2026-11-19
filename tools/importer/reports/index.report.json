@@ -1,0 +1,25 @@
+{
+  "status": "success",
+  "url": "https://www.visitorlando.com/",
+  "path": "index",
+  "timestamp": "2026-11-18T22:35:54.765Z",
+  "title": "Visit Orlando | Hotels, Restaurants, Things to Do & Vacation Guide",
+  "template": "home",
+  "blocks": [
+    "hero-split",
+    "cards-centered",
+    "cards-centered",
+    "columns-overlap",
+    "cards-mosaic",
+    "cards-carousel",
+    "cards-carousel",
+    "widget-ugc-gallery",
+    "cards-boxed",
+    "accordion-image",
+    "columns-media",
+    "accordion-two-col",
+    "columns-banner-ad",
+    "columns-split-panels"
+  ],
+  "importScript": "b31f8bc4854e"
+}

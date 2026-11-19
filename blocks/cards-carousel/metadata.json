@@ -1,0 +1,45 @@
+{
+  "variantName": "cards-carousel",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "horizontal slider of listing or blog cards with arrows and n of N counter",
+    "descriptions": [
+      "Left-aligned H2 with prev/next arrows and '1 of 16' counter; horizontal slider of image cards (Sponsored badge, favorite heart, H3 title, short text, Read More link), third card faded at the edge.",
+      "Same slider pattern as Unique Orlando Experiences: H2 with arrows and '1 of 9'; cards with image, outlined category tag pills, H3 title, text and Read More link."
+    ],
+    "sectionMetadata": []
+  },
+  "contentPattern": {
+    "structure": "image cell | text cell (optional \"Sponsored\" paragraph, optional tag list, title heading, text, Read More link)",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "image",
+        "text: title heading, description, CTA link"
+      ],
+      [
+        "...one row per card"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-6",
+      "sectionName": "Unique Orlando Experiences",
+      "description": "16 listing cards in a slider: image, H3 title, description, Read More link to a listing detail page"
+    },
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-11",
+      "sectionName": "From Our Blog",
+      "description": "9 blog post cards in a slider: image, category tags, H3 title, excerpt, Read More link to the post"
+    }
+  ],
+  "reuseGuidance": "Use for long lists of linked cards that should scroll horizontally."
+}

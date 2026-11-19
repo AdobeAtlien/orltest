@@ -1,0 +1,287 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "home",
+      "urls": [
+        "https://www.visitorlando.com/"
+      ],
+      "representativeUrl": "https://www.visitorlando.com/",
+      "description": "Visit Orlando homepage: split hero, promo bands, card grids, carousels, accordions, social gallery and partner panels",
+      "urlPattern": "/",
+      "blocks": [
+        {
+          "name": "hero-split",
+          "instances": [
+            "#slideshow-container section.hero-primary"
+          ]
+        },
+        {
+          "name": "cards-centered",
+          "instances": [
+            "#main-content section.ccl-widget.core-cards.double-highlight"
+          ]
+        },
+        {
+          "name": "columns-overlap",
+          "instances": [
+            ".contentRender_21 section.ccl-widget.core-side-by-side",
+            ".dynamic_ab_panel section.core-side-by-side.side-by-side-1-across"
+          ]
+        },
+        {
+          "name": "cards-mosaic",
+          "instances": [
+            "#main-content div.mosaic.mosaic-grid"
+          ]
+        },
+        {
+          "name": "cards-carousel",
+          "instances": [
+            "#main-content div.custom-carousel"
+          ]
+        },
+        {
+          "name": "widget-ugc-gallery",
+          "instances": [
+            "#main-content div.panel-ugc-lazyloader"
+          ]
+        },
+        {
+          "name": "cards-boxed",
+          "instances": [
+            "#main-content section.ccl-widget.core-cards.cards-3-across"
+          ]
+        },
+        {
+          "name": "accordion-image",
+          "instances": [
+            "#main-content section.core-side-by-side-accordion"
+          ]
+        },
+        {
+          "name": "columns-media",
+          "instances": [
+            "#main-content > div.contentRender_name_plugins_collections_template_custom_core_side_by_side_1_across > section.core-side-by-side",
+            ".contentRender_35 > section.core-side-by-side"
+          ]
+        },
+        {
+          "name": "accordion-two-col",
+          "instances": [
+            "#main-content section.core-faqs"
+          ]
+        },
+        {
+          "name": "columns-banner-ad",
+          "instances": [
+            "#main-content div.partner-banner-ad"
+          ]
+        },
+        {
+          "name": "columns-split-panels",
+          "instances": [
+            "#main-content div.panel-container div.double-cta"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero - Orlando Welcomes You",
+          "selector": [
+            "#slideshow-container"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-split"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Holly Jolly Guide to Holiday Fun",
+          "selector": [
+            "#main-content > div.contentRender_name_plugins_collections_template_custom_centered_cta",
+            "#main-content > div.contentRender_15"
+          ],
+          "style": "blue, centered",
+          "blocks": [],
+          "defaultContent": [
+            "#main-content section.centered-cta"
+          ]
+        },
+        {
+          "id": "section-3",
+          "name": "Who Should Visit Orlando? Everyone.",
+          "selector": [
+            "#main-content > div.contentRender_16"
+          ],
+          "style": "teal, centered",
+          "blocks": [
+            "cards-centered"
+          ],
+          "defaultContent": [
+            ".contentRender_17 section.widget-heading"
+          ]
+        },
+        {
+          "id": "section-4",
+          "name": "Give the Gift of Memories (sponsored promo)",
+          "selector": [
+            "#main-content > div.contentRender_19"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-overlap"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-5",
+          "name": "Uncover the Wonders of Your Ultimate Destination",
+          "selector": [
+            "#main-content > div.contentRender_22",
+            "#main-content > div.contentRender_23"
+          ],
+          "style": "centered",
+          "blocks": [
+            "cards-mosaic"
+          ],
+          "defaultContent": [
+            ".contentRender_22 section.widget-heading"
+          ]
+        },
+        {
+          "id": "section-6",
+          "name": "Unique Orlando Experiences",
+          "selector": [
+            "#main-content > div.contentRender_24"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-carousel"
+          ],
+          "defaultContent": [
+            ".contentRender_24 h2.template-title"
+          ]
+        },
+        {
+          "id": "section-7",
+          "name": "#VisitOrlando social gallery",
+          "selector": [
+            "#main-content > div.contentRender_26",
+            "#main-content > div.contentRender_27"
+          ],
+          "style": "centered",
+          "blocks": [
+            "widget-ugc-gallery"
+          ],
+          "defaultContent": [
+            ".contentRender_26 section.widget-heading"
+          ]
+        },
+        {
+          "id": "section-8",
+          "name": "Something Is Always Happening in Orlando",
+          "selector": [
+            "#main-content > div.contentRender_30"
+          ],
+          "style": "blue, centered",
+          "blocks": [
+            "cards-boxed"
+          ],
+          "defaultContent": [
+            ".contentRender_31 section.widget-heading"
+          ]
+        },
+        {
+          "id": "section-9",
+          "name": "Start Planning Your Getaway",
+          "selector": [
+            "#main-content > div.contentRender_33",
+            "#main-content > div.contentRender_34"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion-image"
+          ],
+          "defaultContent": [
+            ".contentRender_33 section.widget-heading"
+          ]
+        },
+        {
+          "id": "section-10",
+          "name": "Interactive Map",
+          "selector": [
+            "#main-content > div.contentRender_35"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-11",
+          "name": "From Our Blog",
+          "selector": [
+            "#main-content > div.contentRender_36"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-carousel"
+          ],
+          "defaultContent": [
+            ".contentRender_36 h2.template-title"
+          ]
+        },
+        {
+          "id": "section-12",
+          "name": "Frequently Asked Questions About Orlando",
+          "selector": [
+            "#main-content > div.contentRender_37",
+            "#main-content > div.contentRender_38"
+          ],
+          "style": "centered",
+          "blocks": [
+            "accordion-two-col"
+          ],
+          "defaultContent": [
+            ".contentRender_37 section.widget-heading"
+          ]
+        },
+        {
+          "id": "section-13",
+          "name": "More to Explore (sponsored)",
+          "selector": [
+            "#main-content > div.contentRender_40",
+            "#main-content > div.contentRender_43"
+          ],
+          "style": "centered",
+          "blocks": [
+            "cards-centered",
+            "columns-banner-ad"
+          ],
+          "defaultContent": [
+            ".contentRender_41 section.widget-heading"
+          ]
+        },
+        {
+          "id": "section-14",
+          "name": "Free Planning Help / Fun for Everyone",
+          "selector": [
+            "#main-content > div.contentRender_44"
+          ],
+          "style": "light-grey",
+          "blocks": [
+            "columns-split-panels"
+          ],
+          "defaultContent": []
+        }
+      ]
+    }
+  ]
+}

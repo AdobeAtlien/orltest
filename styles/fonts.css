@@ -1,12 +1,12 @@
 /* stylelint-disable max-line-length */
-@font-face {
-  font-family: roboto-condensed;
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('../fonts/roboto-condensed-bold.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+
+/*
+ * Body + heading font: Roboto (self-hosted, same family as the source site).
+ * Display font: Brandon Grotesque, delivered by the source site's Typekit kit (obr7ipm).
+ * Loaded here (fonts.css loads after first paint) rather than in head.html so the kit
+ * does not block rendering; head.html keeps the preconnects.
+ */
+@import url('https://use.typekit.net/obr7ipm.css');
 
 @font-face {
   font-family: roboto;

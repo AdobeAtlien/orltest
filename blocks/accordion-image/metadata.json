@@ -1,0 +1,38 @@
+{
+  "variantName": "accordion-image",
+  "baseBlock": "accordion",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "accordion beside a photo that swaps to the open item image",
+    "descriptions": [
+      "Centered H2; rounded photo with an orange offset block on the left; on the right four outlined rounded accordion items (Getting to Know Orlando open, Access Planning Resources, Explore Places to Stay, Try OPAL AI), each with text and 'Explore' link; the photo swaps to the open item's image."
+    ],
+    "sectionMetadata": []
+  },
+  "contentPattern": {
+    "structure": "label cell | content cell (text, links, optional image); image may also be its own cell",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "title (label)",
+        "content: body, image, links"
+      ],
+      [
+        "...one row per item"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-9",
+      "sectionName": "Start Planning Your Getaway",
+      "description": "4 accordion items, each with its own image, title, description and Explore link"
+    }
+  ],
+  "reuseGuidance": "Use when each accordion item has its own image. One item open at a time."
+}

@@ -1,0 +1,315 @@
+/* Cards Carousel: values measured from the source slider (visitorlando.com custom-carousel). */
+.cards-carousel {
+  container-type: inline-size;
+  position: relative;
+  color: var(--brand-gray-dark);
+}
+
+/* controls: prev arrow | "n of N" | next arrow */
+.cards-carousel .cards-carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cards-carousel .cards-carousel-controls button {
+  position: relative;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.cards-carousel .cards-carousel-controls button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--brand-blue);
+  mask: url('/icons/arrow-circle-right-md-blue-dark.svg') center / contain no-repeat;
+}
+
+.cards-carousel .cards-carousel-controls .cards-carousel-prev::before {
+  mask-image: url('/icons/arrow-circle-left-md-blue-dark.svg');
+}
+
+.cards-carousel .cards-carousel-controls button:disabled::before {
+  background-color: var(--brand-gray-dark);
+}
+
+.cards-carousel .cards-carousel-controls button:not(:disabled) {
+  box-shadow: var(--shadow-card);
+}
+
+.cards-carousel .cards-carousel-controls button:not(:disabled):hover::before,
+.cards-carousel .cards-carousel-controls button:not(:disabled):focus-visible::before {
+  background: url('/icons/arrow-circle-right-md-blue-dark-hover.svg') center / contain no-repeat;
+  mask: none;
+}
+
+.cards-carousel .cards-carousel-controls .cards-carousel-prev:not(:disabled):hover::before,
+.cards-carousel .cards-carousel-controls .cards-carousel-prev:not(:disabled):focus-visible::before {
+  background-image: url('/icons/arrow-circle-left-md-blue-dark-hover.svg');
+}
+
+.cards-carousel .cards-carousel-controls button:focus-visible {
+  outline: 2px solid var(--brand-blue-dark);
+  outline-offset: 3px;
+}
+
+.cards-carousel .cards-carousel-controls button:disabled {
+  cursor: default;
+}
+
+.cards-carousel .cards-carousel-counter {
+  color: var(--brand-black);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+/* viewport bleeds off the right page edge, with the source's white fade over it */
+.cards-carousel .cards-carousel-viewport {
+  position: relative;
+  margin-right: calc(-1 * var(--cards-carousel-bleed, 0px));
+}
+
+.cards-carousel .cards-carousel-viewport::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 60px;
+  background: linear-gradient(to right, rgb(255 255 255 / 0%), var(--background-color));
+  pointer-events: none;
+}
+
+.cards-carousel .cards-carousel-track {
+  /* containing block for absolutely positioned descendants (e.g. screen-reader text),
+     so they scroll with the track instead of widening the page */
+  position: relative;
+  display: grid;
+  grid-auto-columns: 85cqi;
+  grid-auto-flow: column;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.cards-carousel .cards-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cards-carousel .cards-carousel-card {
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+}
+
+/* image */
+.cards-carousel .cards-carousel-card-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  line-height: 0;
+}
+
+.cards-carousel .cards-carousel-card-image picture {
+  display: block;
+}
+
+.cards-carousel .cards-carousel-card-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.cards-carousel .cards-carousel-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 13px 16px;
+  border-radius: var(--radius-card) 0 12px;
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
+
+/* body: tags, title, text, Read More */
+.cards-carousel .cards-carousel-card-body {
+  padding-top: 20px;
+}
+
+.cards-carousel .cards-carousel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 9px 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-carousel .cards-carousel-tags li {
+  padding: 6px 14px;
+  border: 2px solid var(--brand-gray-light);
+  border-radius: 4px;
+  color: var(--brand-black);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
+
+.cards-carousel .cards-carousel-card-body h3 {
+  margin: 0 0 10px;
+  color: var(--brand-black);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+}
+
+.cards-carousel .cards-carousel-card-body h3 a:any-link {
+  color: inherit;
+}
+
+.cards-carousel .cards-carousel-card-body p {
+  margin: 0;
+  color: var(--brand-gray-dark);
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: normal;
+}
+
+/* Read More: last paragraph holding only a link -> uppercase arrow link */
+.cards-carousel .cards-carousel-card-body > p:last-child:has(> a:only-child) {
+  margin-top: 10px;
+}
+
+.cards-carousel .cards-carousel-card-body > p:last-child > a:only-child:any-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--brand-blue);
+  font-family: var(--display-font-family);
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.cards-carousel .cards-carousel-card-body > p:last-child > a:only-child::after {
+  content: '';
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin: -2px 0;
+  background: url('/icons/arrow-md-blue.svg') center / contain no-repeat;
+}
+
+.cards-carousel .cards-carousel-card-body > p:last-child > a:only-child:hover,
+.cards-carousel .cards-carousel-card-body > p:last-child > a:only-child:focus-visible {
+  color: var(--brand-blue-dark);
+}
+
+.cards-carousel .cards-carousel-card-body > p:last-child > a:only-child:hover::after,
+.cards-carousel .cards-carousel-card-body > p:last-child > a:only-child:focus-visible::after {
+  background-image: url('/icons/arrow-md-blue-dark.svg');
+}
+
+@media (width >= 600px) {
+  .cards-carousel .cards-carousel-track {
+    grid-auto-columns: calc((100cqi - 30px) / 2.2);
+    gap: 30px;
+  }
+}
+
+@media (width >= 900px) {
+  .cards-carousel .cards-carousel-controls {
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .cards-carousel .cards-carousel-controls button {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cards-carousel .cards-carousel-viewport::after {
+    width: 155px;
+  }
+
+  /* source cards are 513.5px wide at 1280px and 1440px viewports */
+  .cards-carousel .cards-carousel-track {
+    grid-auto-columns: min(513.5px, calc((100cqi - 30px) / 1.6));
+  }
+
+  .cards-carousel .cards-carousel-badge {
+    font-size: 20px;
+  }
+
+  .cards-carousel .cards-carousel-card-body {
+    padding-top: 30px;
+  }
+
+  .cards-carousel .cards-carousel-card-body h3 {
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 0.6px;
+  }
+
+  .cards-carousel .cards-carousel-card-body p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .cards-carousel .cards-carousel-card-body > p:last-child:has(> a:only-child) {
+    margin-top: 20px;
+  }
+
+  .cards-carousel .cards-carousel-card-body > p:last-child > a:only-child:any-link {
+    gap: 4px;
+    font-size: 22px;
+  }
+
+  .cards-carousel .cards-carousel-card-body > p:last-child > a:only-child::after {
+    width: 30px;
+    height: 30px;
+    margin: -3px 0;
+  }
+}
+
+/* wide enough for the section heading: arrows sit in the heading row, as in the source */
+@media (width >= 1200px) {
+  .cards-carousel .cards-carousel-controls {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 40px);
+    margin: 0;
+  }
+}

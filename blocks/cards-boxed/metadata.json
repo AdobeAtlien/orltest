@@ -1,0 +1,43 @@
+{
+  "variantName": "cards-boxed",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "white shadowed card boxes, typically hanging below a colored section band",
+    "descriptions": [
+      "Royal blue band (decorative rings) behind heading, intro, white 'View Events' button and the top of the cards; three white shadowed cards (image with credit, centered title, text) that hang below the band."
+    ],
+    "sectionMetadata": [
+      {
+        "section": "section-8",
+        "style": "blue, centered"
+      }
+    ]
+  },
+  "contentPattern": {
+    "structure": "image cell | text cell (title, text, optional single link making the card clickable)",
+    "rows": [
+      [
+        "block name (+variant)"
+      ],
+      [
+        "image",
+        "text: title heading, description, CTA link"
+      ],
+      [
+        "...one row per card"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": [
+    {
+      "sourceUrl": "https://www.visitorlando.com/",
+      "section": "section-8",
+      "sectionName": "Something Is Always Happening in Orlando",
+      "description": "Three event-finder cards: image, title, description, each linking to the events listing"
+    }
+  ],
+  "reuseGuidance": "Use for boxed event/feature cards with centered text."
+}
