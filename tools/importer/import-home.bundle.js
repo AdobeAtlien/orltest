@@ -45,7 +45,7 @@ var CustomImportScript = (() => {
   function parse(element, { document }) {
     const cells = [];
     let imageEl = null;
-    const video = element.querySelector(".media-col video[poster], video[poster], video[data-poster]");
+    const video = element.querySelector(".media-col video, video");
     const posterSrc = video && (video.getAttribute("poster") || video.getAttribute("data-poster"));
     if (posterSrc) {
       imageEl = document.createElement("img");
@@ -55,7 +55,20 @@ var CustomImportScript = (() => {
       const mediaImg = element.querySelector(".media-col picture, .media-col img");
       if (mediaImg) imageEl = mediaImg;
     }
-    if (imageEl) cells.push([imageEl]);
+    let videoLink = null;
+    if (video) {
+      const sources = [video.getAttribute("src"), ...[...video.querySelectorAll("source[src]")].map((s) => s.getAttribute("src"))].filter(Boolean);
+      const videoSrc = sources.find((s) => /\.(mp4|webm)(\?|$)/i.test(s)) || sources[0];
+      if (videoSrc) {
+        const href = new URL(videoSrc, "https://www.visitorlando.com/").href;
+        videoLink = document.createElement("p");
+        const a = document.createElement("a");
+        a.href = href;
+        a.textContent = href;
+        videoLink.append(a);
+      }
+    }
+    if (imageEl || videoLink) cells.push([[imageEl, videoLink].filter(Boolean)]);
     const content = [];
     const srcHeading = element.querySelector(".content-col h1, .content-col h2, h1, h2");
     if (srcHeading) {

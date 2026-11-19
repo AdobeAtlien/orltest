@@ -89,6 +89,12 @@ main .hero-split .hero-split-actions a:any-link:focus-visible {
   line-height: 0;
 }
 
+/* frame: the image, with the optional video over it, in one clipped box */
+.hero-split .hero-split-frame {
+  position: relative;
+  overflow: hidden;
+}
+
 .hero-split .hero-split-media picture,
 .hero-split .hero-split-media img {
   display: block;
@@ -99,6 +105,79 @@ main .hero-split .hero-split-actions a:any-link:focus-visible {
   aspect-ratio: 16 / 9;
   height: auto;
   object-fit: cover;
+}
+
+/* background video: fades in over the still once it is actually playing */
+.hero-split .hero-split-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.hero-split .hero-split-frame.is-video-ready .hero-split-video {
+  opacity: 1;
+}
+
+/* pause/play: white circle icon; bottom-right on mobile, centred from tablet up (as the source) */
+.hero-split .hero-split-video-toggle {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.hero-split .hero-split-video-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--brand-white);
+  mask: url('/icons/video-play.svg') center / contain no-repeat;
+}
+
+.hero-split .hero-split-frame.is-playing .hero-split-video-toggle::before {
+  mask-image: url('/icons/video-pause.svg');
+}
+
+.hero-split .hero-split-video-toggle:focus-visible {
+  outline: 2px solid var(--brand-white);
+  outline-offset: 3px;
+  opacity: 1;
+}
+
+/* with a mouse, the control shows while hovering the video (always visible on touch) */
+@media (hover: hover) {
+  .hero-split .hero-split-video-toggle {
+    opacity: 0;
+  }
+
+  .hero-split .hero-split-frame:hover .hero-split-video-toggle,
+  .hero-split .hero-split-frame:not(.is-video-ready) .hero-split-video-toggle {
+    opacity: 1;
+  }
+}
+
+/* breakpoint-exception: the source centres a 50px control from 744px (46.5em) */
+@media (width >= 744px) {
+  .hero-split .hero-split-video-toggle {
+    inset: 0;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+  }
 }
 
 /* desktop: copy column beside a photo that bleeds to the right edge */
@@ -144,9 +223,10 @@ main .hero-split .hero-split-actions a:any-link:focus-visible {
     padding-bottom: 46px;
   }
 
-  .hero-split .hero-split-media picture {
+  .hero-split .hero-split-frame {
     width: 87.234%;
     margin-left: auto;
+    border-radius: 200px 0 0 10px;
   }
 
   .hero-split .hero-split-media img {
