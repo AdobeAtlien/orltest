@@ -5,10 +5,11 @@
  * Parser for hero-split (visitorlando.com section.hero-primary).
  *
  * Block table (1 column):
- *   row 1: feature image (video poster / fallback image) - optional
+ *   row 1: feature image (video poster / fallback image) + optional video link - optional
  *   row 2: heading, intro paragraph, CTA links
  *
- * The source hero plays a video; the poster image is used as the still.
+ * The source hero plays a looping video: the poster image is kept as the still and the
+ * video file is added as a link in the same cell (the block plays it over the still).
  * The Mindtrip chat form has no plain link and is skipped.
  */
 export default function parse(element, { document }) {
@@ -16,7 +17,7 @@ export default function parse(element, { document }) {
 
   // --- Image: video poster, then any real image in the media column ---
   let imageEl = null;
-  const video = element.querySelector('.media-col video[poster], video[poster], video[data-poster]');
+  const video = element.querySelector('.media-col video, video');
   const posterSrc = video && (video.getAttribute('poster') || video.getAttribute('data-poster'));
   if (posterSrc) {
     imageEl = document.createElement('img');
@@ -26,7 +27,24 @@ export default function parse(element, { document }) {
     const mediaImg = element.querySelector('.media-col picture, .media-col img');
     if (mediaImg) imageEl = mediaImg;
   }
-  if (imageEl) cells.push([imageEl]);
+
+  // --- Video file: first mp4/webm source of the hero video ---
+  let videoLink = null;
+  if (video) {
+    const sources = [video.getAttribute('src'), ...[...video.querySelectorAll('source[src]')].map((s) => s.getAttribute('src'))]
+      .filter(Boolean);
+    const videoSrc = sources.find((s) => /\.(mp4|webm)(\?|$)/i.test(s)) || sources[0];
+    if (videoSrc) {
+      const href = new URL(videoSrc, 'https://www.visitorlando.com/').href;
+      videoLink = document.createElement('p');
+      const a = document.createElement('a');
+      a.href = href;
+      a.textContent = href;
+      videoLink.append(a);
+    }
+  }
+
+  if (imageEl || videoLink) cells.push([[imageEl, videoLink].filter(Boolean)]);
 
   // --- Text: heading, description, CTAs ---
   const content = [];
