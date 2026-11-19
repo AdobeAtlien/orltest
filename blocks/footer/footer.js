@@ -59,6 +59,26 @@ function decorateBrand(section) {
   }
 }
 
+/**
+ * "Cookie Settings" (authored as a `#consent` link) opens the consent tool's preferences on the
+ * source. The site has no consent tool yet, so the item stays hidden; a consent tool shows it
+ * with `document.body.classList.add('has-consent-settings')` and listens for the
+ * `consent.settings` event the link dispatches. Matched by text too, in case an upload rewrote
+ * the href.
+ */
+function decorateConsentLink(list) {
+  list.querySelectorAll('li > a[href]').forEach((a) => {
+    const href = a.getAttribute('href');
+    if (!href.endsWith('#consent') && !/^cookie settings$/i.test(a.textContent.trim())) return;
+    a.setAttribute('href', '#consent');
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.dispatchEvent(new CustomEvent('consent.settings'));
+    });
+    a.parentElement.classList.add('footer-consent');
+  });
+}
+
 export default async function decorate(block) {
   const sections = await fetchFooterSections();
   if (!sections) return;
@@ -72,6 +92,7 @@ export default async function decorate(block) {
     const list = links.querySelector('ul');
     if (list) {
       list.className = 'footer-links';
+      decorateConsentLink(list);
       nav.append(list);
     }
   }

@@ -118,6 +118,15 @@ footer .footer-links {
   letter-spacing: 0.02em;
 }
 
+/* "Cookie Settings" shows only once a consent tool provides the settings (see footer.js) */
+footer .footer-links .footer-consent {
+  display: none;
+}
+
+body.has-consent-settings footer .footer-links .footer-consent {
+  display: list-item;
+}
+
 footer .footer-links a:any-link {
   display: inline-block;
   color: inherit;
