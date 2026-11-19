@@ -84,20 +84,41 @@ function decorateVideo(frame, src) {
 }
 
 /**
- * Adds the source's sparkle to the heading: three decorative stars after its first word
- * (e.g. "Orlando"), which fade in one after another once the hero is shown.
+ * Returns the index in `textNode` where its second rendered line starts
+ * (its full length when the text fits on one line or is not laid out yet).
+ */
+function firstLineEnd(textNode) {
+  const text = textNode.textContent;
+  const range = document.createRange();
+  const words = /\S+/g;
+  let top = null;
+  let match = words.exec(text);
+  while (match) {
+    range.setStart(textNode, match.index);
+    range.setEnd(textNode, match.index + 1);
+    const rect = range.getClientRects()[0];
+    if (rect) {
+      if (top === null) top = rect.top;
+      else if (rect.top > top + 1) return match.index;
+    }
+    match = words.exec(text);
+  }
+  return text.length;
+}
+
+/**
+ * Adds the source's sparkle to a plain-text heading: three decorative stars at the end of its
+ * first line ("Orlando" on phones, the whole heading when it fits on one line), fading in one
+ * after another. The first line is re-measured when the heading resizes or web fonts load.
  */
 function decorateSparkle(heading) {
-  const textNode = [...heading.childNodes]
-    .find((n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
-  if (!textNode) return;
-  const [, lead, word] = textNode.textContent.match(/^(\s*)(\S+)/);
-  const rest = textNode.splitText(lead.length + word.length);
-  textNode.textContent = lead;
+  if (heading.children.length) return;
+  const text = heading.textContent.replace(/\s+/g, ' ').trim();
+  if (!text) return;
 
   const sparkle = document.createElement('span');
   sparkle.className = 'hero-split-sparkle';
-  sparkle.textContent = word;
+  const label = document.createTextNode(text);
   const stars = document.createElement('span');
   stars.className = 'hero-split-stars';
   stars.setAttribute('aria-hidden', 'true');
@@ -106,8 +127,29 @@ function decorateSparkle(heading) {
     star.className = `star-${n}`;
     stars.append(star);
   });
-  sparkle.append(stars);
-  rest.before(sparkle);
+  sparkle.append(label, stars);
+  const rest = document.createTextNode('');
+  heading.replaceChildren(sparkle, rest);
+
+  const full = document.createTextNode(text);
+  const layout = () => {
+    heading.replaceChildren(full); // measure the plain text, laid out exactly as it renders
+    const end = firstLineEnd(full);
+    label.textContent = text.slice(0, end).trimEnd();
+    rest.textContent = end < text.length ? ` ${text.slice(end)}` : '';
+    heading.replaceChildren(sparkle, rest);
+  };
+
+  let width = 0;
+  new ResizeObserver(([entry]) => {
+    if (Math.round(entry.contentRect.width) === width) return;
+    width = Math.round(entry.contentRect.width);
+    layout();
+  }).observe(heading);
+  if (document.fonts) {
+    document.fonts.ready.then(layout);
+    document.fonts.addEventListener('loadingdone', layout);
+  }
 
   // two frames: the stars are painted transparent first, so the fade-in transition runs
   requestAnimationFrame(() => requestAnimationFrame(() => sparkle.classList.add('is-active')));
