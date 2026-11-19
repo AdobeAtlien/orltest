@@ -10,7 +10,8 @@
  *
  * The source hero plays a looping video: the poster image is kept as the still and the
  * video file is added as a link in the same cell (the block plays it over the still).
- * The Mindtrip chat form has no plain link and is skipped.
+ * The Mindtrip chat form ("Chat With OPAL AI") becomes a `#mindtrip.ai/?q=<prompt>&hint=<hint>`
+ * link after the other CTAs; the block turns it back into the chat button.
  */
 export default function parse(element, { document }) {
   const cells = [];
@@ -72,6 +73,26 @@ export default function parse(element, { document }) {
     const link = document.createElement('a');
     link.href = a.getAttribute('href');
     link.textContent = text;
+    p.append(link);
+    content.push(p);
+  });
+
+  // --- Mindtrip chat CTA ("Chat With OPAL AI"): a #mindtrip.ai link carrying prompt + hint ---
+  element.querySelectorAll('.content-col form.mindtrip-form').forEach((form) => {
+    const button = form.querySelector('.mindtrip-button');
+    const label = (button?.querySelector('.button-text') || button)?.textContent.replace(/\s+/g, ' ').trim();
+    if (!label) return;
+    const promptEl = form.querySelector('.mindtrip-prompt');
+    const hintEl = form.querySelector('.mindtrip-hint');
+    const prompt = (promptEl?.value || promptEl?.textContent || '').trim();
+    const hint = (hintEl?.value || hintEl?.getAttribute('value') || '').trim();
+    let href = '#mindtrip.ai/';
+    const query = [prompt && `q=${encodeURIComponent(prompt)}`, hint && `hint=${encodeURIComponent(hint)}`].filter(Boolean);
+    if (query.length) href += `?${query.join('&')}`;
+    const p = document.createElement('p');
+    const link = document.createElement('a');
+    link.setAttribute('href', href);
+    link.textContent = label;
     p.append(link);
     content.push(p);
   });

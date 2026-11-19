@@ -253,6 +253,9 @@ async function loadLazy(doc) {
 function loadDelayed() {
   import('./consent-check.js');
   // load anything that can be postponed to the latest here
+  // Mindtrip "OPAL AI" chat (floating launcher + chat drawer), as on the source site;
+  // 3s later so it stays out of page load (a chat button click loads it right away)
+  window.setTimeout(() => import('./mindtrip.js').then(({ loadMindtrip }) => loadMindtrip()), 3000);
 }
 
 async function loadPage() {

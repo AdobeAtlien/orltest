@@ -93,6 +93,25 @@ var CustomImportScript = (() => {
       p.append(link);
       content.push(p);
     });
+    element.querySelectorAll(".content-col form.mindtrip-form").forEach((form) => {
+      var _a;
+      const button = form.querySelector(".mindtrip-button");
+      const label = (_a = (button == null ? void 0 : button.querySelector(".button-text")) || button) == null ? void 0 : _a.textContent.replace(/\s+/g, " ").trim();
+      if (!label) return;
+      const promptEl = form.querySelector(".mindtrip-prompt");
+      const hintEl = form.querySelector(".mindtrip-hint");
+      const prompt = ((promptEl == null ? void 0 : promptEl.value) || (promptEl == null ? void 0 : promptEl.textContent) || "").trim();
+      const hint = ((hintEl == null ? void 0 : hintEl.value) || (hintEl == null ? void 0 : hintEl.getAttribute("value")) || "").trim();
+      let href = "#mindtrip.ai/";
+      const query = [prompt && `q=${encodeURIComponent(prompt)}`, hint && `hint=${encodeURIComponent(hint)}`].filter(Boolean);
+      if (query.length) href += `?${query.join("&")}`;
+      const p = document.createElement("p");
+      const link = document.createElement("a");
+      link.setAttribute("href", href);
+      link.textContent = label;
+      p.append(link);
+      content.push(p);
+    });
     if (content.length) cells.push([content]);
     const block = WebImporter.Blocks.createBlock(document, { name: "hero-split", cells });
     element.replaceWith(block);
