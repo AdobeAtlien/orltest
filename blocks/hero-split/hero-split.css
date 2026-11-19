@@ -1,4 +1,4 @@
-/* hero-split: values measured from the source hero-primary (375 / 1280 / 1440 / 1920) */
+/* hero-split: values measured from the source hero-primary (390 / 744 / 1024 / 1280 / 1440 / 1920) */
 
 /* mobile (base): stacked, centred copy, full-bleed media (the wrapper is full-bleed, see styles.css) */
 .hero-split {
@@ -9,7 +9,11 @@
   color: var(--brand-gray-dark);
 }
 
+/* copy: centred, at most 582px wide (as the source) below the desktop layout */
 .hero-split .hero-split-content {
+  box-sizing: border-box;
+  max-width: calc(582px + 40px);
+  margin: 0 auto;
   padding: 0 20px;
   text-align: center;
 }
@@ -18,9 +22,11 @@
   margin-top: 0;
 }
 
+/* heading: 80% of the copy column on small phones, full width from 640px (as the source) */
 .hero-split h1 {
-  margin: 0 0 15px;
-  padding: 0 33px;
+  width: 80%;
+  margin: 0 auto 15px;
+  padding: 0;
   color: var(--brand-black);
   font-family: var(--display-font-family);
   font-size: 40px;
@@ -170,6 +176,13 @@ main .hero-split .hero-split-actions a:any-link:focus-visible {
   }
 }
 
+/* breakpoint-exception: the source widens the heading to the full column from 640px (40em) */
+@media (width >= 640px) {
+  .hero-split h1 {
+    width: 100%;
+  }
+}
+
 /* breakpoint-exception: the source centres a 50px control from 744px (46.5em) */
 @media (width >= 744px) {
   .hero-split .hero-split-video-toggle {
@@ -180,28 +193,71 @@ main .hero-split .hero-split-actions a:any-link:focus-visible {
   }
 }
 
-/* desktop: copy column beside a photo that bleeds to the right edge */
-@media (width >= 900px) {
+/*
+ * breakpoint-exception: tablet (744px / 46.5em up to 1279px), as the source: copy stays stacked and
+ * centred (582px column), the media sits below it inset 80px each side with 20px corners (1168:657).
+ */
+@media (width >= 744px) {
   .hero-split {
     margin-bottom: 121px;
+    padding-top: 67px;
+  }
+
+  .hero-split h1 {
+    font-size: 60px;
+    line-height: 60px;
+  }
+
+  .hero-split .hero-split-content > p {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .hero-split .hero-split-actions {
+    margin-top: 40px;
+  }
+
+  .hero-split .hero-split-media {
+    margin-top: 99px;
+    padding-bottom: 80px;
+  }
+
+  .hero-split .hero-split-frame {
+    width: calc(100% - 160px);
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+
+  .hero-split .hero-split-media img {
+    aspect-ratio: 1168 / 657;
+  }
+}
+
+/*
+ * breakpoint-exception: desktop from 1280px (80em), as the source: a fixed 676px copy column beside
+ * media that fills the rest of the viewport to its right edge (248:339, at most 87.02vh tall).
+ */
+@media (width >= 1280px) {
+  .hero-split {
     padding-top: 85px;
   }
 
   .hero-split.hero-split-has-media {
     display: grid;
-    grid-template-columns: 676fr 752fr;
+    grid-template-columns: 676px minmax(0, 1fr);
     gap: 12px;
     align-items: start;
   }
 
   .hero-split .hero-split-content {
+    max-width: none;
+    margin: 0;
     padding: 54px 21px 0 73px;
     text-align: left;
   }
 
   .hero-split h1 {
     margin-bottom: 20px;
-    padding: 0;
     font-size: 90px;
     line-height: 90px;
   }
@@ -215,43 +271,18 @@ main .hero-split .hero-split-actions a:any-link:focus-visible {
     flex-direction: row;
     align-items: flex-start;
     gap: 30px;
-    margin-top: 40px;
   }
 
   .hero-split .hero-split-media {
     margin-top: 0;
-    padding-bottom: 46px;
-  }
-
-  .hero-split .hero-split-frame {
-    width: 87.234%;
-    margin-left: auto;
-    border-radius: 200px 0 0 10px;
-  }
-
-  .hero-split .hero-split-media img {
-    aspect-ratio: 656 / 783;
-    border-radius: 200px 0 0 10px;
-  }
-}
-
-/*
- * breakpoint-exception: from 1280px (80em) the source fixes the copy column at 676px and lets the
- * media fill the rest of the viewport to its right edge (248:339, at most 87.02vh tall).
- */
-@media (width >= 1280px) {
-  .hero-split.hero-split-has-media {
-    grid-template-columns: 676px minmax(0, 1fr);
-  }
-
-  .hero-split .hero-split-media {
-    padding-left: 96px;
+    padding: 0 0 46px 96px;
   }
 
   .hero-split .hero-split-frame {
     width: 100%;
     max-height: 87.02vh;
-    margin-left: 0;
+    margin: 0;
+    border-radius: 200px 0 0 10px;
     aspect-ratio: 248 / 339;
   }
 
@@ -262,6 +293,7 @@ main .hero-split .hero-split-actions a:any-link:focus-visible {
 
   .hero-split .hero-split-media img {
     aspect-ratio: auto;
+    border-radius: 200px 0 0 10px;
   }
 }
 
