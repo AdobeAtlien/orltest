@@ -8,8 +8,9 @@
  * plays muted on a loop over it, and gets a pause/play button. Visitors who prefer
  * reduced motion get the still with a play button instead of autoplay.
  *
- * Optional chat CTA: a CTA link to `#mindtrip.ai/?q=<prompt>&hint=<hint>` becomes the source's
- * outlined "Chat With OPAL AI" button, which opens the Mindtrip chat with that prompt.
+ * Optional chat CTA: a CTA link to `https://www.visitorlando.com/#mindtrip.ai/?q=<prompt>&hint=<hint>`
+ * becomes the source's outlined "Chat With OPAL AI" button, which opens the Mindtrip chat with
+ * that prompt.
  */
 import { buildMindtripCta, mindtripEnabled, parseMindtripLink } from '../../scripts/mindtrip.js';
 
@@ -21,7 +22,7 @@ const VIDEO_EXT = /\.(mp4|webm)$/i;
  */
 function decorateChatCtas(actions) {
   const enabled = mindtripEnabled();
-  actions.querySelectorAll('a[href^="#mindtrip.ai"]').forEach((a) => {
+  actions.querySelectorAll('a[href*="#mindtrip.ai"]').forEach((a) => {
     const options = parseMindtripLink(a.getAttribute('href'));
     if (!options) return;
     const p = a.closest('p');

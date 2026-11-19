@@ -102,7 +102,7 @@ var CustomImportScript = (() => {
       const hintEl = form.querySelector(".mindtrip-hint");
       const prompt = ((promptEl == null ? void 0 : promptEl.value) || (promptEl == null ? void 0 : promptEl.textContent) || "").trim();
       const hint = ((hintEl == null ? void 0 : hintEl.value) || (hintEl == null ? void 0 : hintEl.getAttribute("value")) || "").trim();
-      let href = "#mindtrip.ai/";
+      let href = "https://www.visitorlando.com/#mindtrip.ai/";
       const query = [prompt && `q=${encodeURIComponent(prompt)}`, hint && `hint=${encodeURIComponent(hint)}`].filter(Boolean);
       if (query.length) href += `?${query.join("&")}`;
       const p = document.createElement("p");

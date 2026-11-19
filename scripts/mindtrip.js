@@ -29,13 +29,17 @@ export function loadMindtrip() {
 }
 
 /**
- * Reads an authored chat link (`#mindtrip.ai/?q=<prompt>&hint=<hint>`).
+ * Reads an authored chat link: a URL whose hash is Mindtrip's deep link,
+ * `https://www.visitorlando.com/#mindtrip.ai/?q=<prompt>&hint=<hint>` (a full address survives
+ * content uploads; without JS it opens the chat on visitorlando.com). A bare `#mindtrip.ai/...`
+ * href is accepted too.
  * @param {string} href link href
  * @returns {{prompt: string, hint: string}|null} chat options, or null for other links
  */
 export function parseMindtripLink(href) {
-  if (!href || !href.startsWith('#mindtrip.ai')) return null;
-  const query = href.split('?')[1] || '';
+  const at = href ? href.indexOf('#mindtrip.ai') : -1;
+  if (at < 0) return null;
+  const query = href.slice(at).split('?')[1] || '';
   const params = new URLSearchParams(query);
   return { prompt: params.get('q') || '', hint: params.get('hint') || '' };
 }
