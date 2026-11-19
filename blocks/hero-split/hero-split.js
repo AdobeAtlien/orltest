@@ -7,8 +7,37 @@
  * The image stays as the still (and LCP element); the video loads after the page,
  * plays muted on a loop over it, and gets a pause/play button. Visitors who prefer
  * reduced motion get the still with a play button instead of autoplay.
+ *
+ * Optional chat CTA: a CTA link to `#mindtrip.ai/?q=<prompt>&hint=<hint>` becomes the source's
+ * outlined "Chat With OPAL AI" button, which opens the Mindtrip chat with that prompt.
  */
+import { buildMindtripCta, parseMindtripLink } from '../../scripts/mindtrip.js';
+
 const VIDEO_EXT = /\.(mp4|webm)$/i;
+
+/** Replaces Mindtrip chat links among the CTAs with the source's chat button. */
+function decorateChatCtas(actions) {
+  actions.querySelectorAll('a[href^="#mindtrip.ai"]').forEach((a) => {
+    const options = parseMindtripLink(a.getAttribute('href'));
+    if (!options) return;
+    const icon = document.createElement('span');
+    icon.className = 'hero-split-chat-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    ['mindtrip-logo-md-blue', 'mindtrip-logo-white'].forEach((name, i) => {
+      const img = document.createElement('img');
+      img.src = `${window.hlx.codeBasePath}/icons/${name}.svg`;
+      img.alt = '';
+      img.width = 20;
+      img.height = 20;
+      img.className = i ? 'is-hover' : 'is-base';
+      icon.append(img);
+    });
+    const cta = buildMindtripCta(a.textContent.trim(), options, icon);
+    cta.classList.add('hero-split-chat');
+    const p = a.closest('p');
+    (p && p.parentElement === actions ? p : a).replaceWith(cta);
+  });
+}
 
 function videoUrl(a) {
   try {
@@ -197,6 +226,7 @@ export default function decorate(block) {
     actions.className = 'hero-split-actions';
     ctas[0].before(actions);
     actions.append(...ctas);
+    decorateChatCtas(actions);
   }
 
   const heading = content.querySelector('h1, h2');
