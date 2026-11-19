@@ -7,6 +7,19 @@ import { loadScript } from './aem.js';
 
 const EMBED_URL = 'https://partner.mindtrip.ai/overlay/embed.js?orgid=visitorlando&locale=en';
 
+/*
+ * Mindtrip only serves the chat inside sites approved for the Visit Orlando account; elsewhere
+ * the drawer opens empty. Add a host here once Mindtrip has approved it. `?mindtrip=on` in the
+ * page URL enables the chat anywhere (to test an address before adding it).
+ */
+const CHAT_HOSTS = [/(^|\.)visitorlando\.com$/i];
+
+/** True where the Mindtrip chat can be shown (approved host, or `?mindtrip=on`). */
+export function mindtripEnabled() {
+  if (new URLSearchParams(window.location.search).get('mindtrip') === 'on') return true;
+  return CHAT_HOSTS.some((host) => host.test(window.location.hostname));
+}
+
 let loading;
 
 /** Loads the Mindtrip overlay script once; resolves when it has run. */
@@ -16,13 +29,17 @@ export function loadMindtrip() {
 }
 
 /**
- * Reads an authored chat link (`#mindtrip.ai/?q=<prompt>&hint=<hint>`).
+ * Reads an authored chat link: a URL whose hash is Mindtrip's deep link,
+ * `https://www.visitorlando.com/#mindtrip.ai/?q=<prompt>&hint=<hint>` (a full address survives
+ * content uploads; without JS it opens the chat on visitorlando.com). A bare `#mindtrip.ai/...`
+ * href is accepted too.
  * @param {string} href link href
  * @returns {{prompt: string, hint: string}|null} chat options, or null for other links
  */
 export function parseMindtripLink(href) {
-  if (!href || !href.startsWith('#mindtrip.ai')) return null;
-  const query = href.split('?')[1] || '';
+  const at = href ? href.indexOf('#mindtrip.ai') : -1;
+  if (at < 0) return null;
+  const query = href.slice(at).split('?')[1] || '';
   const params = new URLSearchParams(query);
   return { prompt: params.get('q') || '', hint: params.get('hint') || '' };
 }

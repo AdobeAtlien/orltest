@@ -10,8 +10,9 @@
  *
  * The source hero plays a looping video: the poster image is kept as the still and the
  * video file is added as a link in the same cell (the block plays it over the still).
- * The Mindtrip chat form ("Chat With OPAL AI") becomes a `#mindtrip.ai/?q=<prompt>&hint=<hint>`
- * link after the other CTAs; the block turns it back into the chat button.
+ * The Mindtrip chat form ("Chat With OPAL AI") becomes a link after the other CTAs to
+ * `https://www.visitorlando.com/#mindtrip.ai/?q=<prompt>&hint=<hint>` (a full address, which
+ * content uploads keep); the block turns it back into the chat button.
  */
 export default function parse(element, { document }) {
   const cells = [];
@@ -86,7 +87,7 @@ export default function parse(element, { document }) {
     const hintEl = form.querySelector('.mindtrip-hint');
     const prompt = (promptEl?.value || promptEl?.textContent || '').trim();
     const hint = (hintEl?.value || hintEl?.getAttribute('value') || '').trim();
-    let href = '#mindtrip.ai/';
+    let href = 'https://www.visitorlando.com/#mindtrip.ai/';
     const query = [prompt && `q=${encodeURIComponent(prompt)}`, hint && `hint=${encodeURIComponent(hint)}`].filter(Boolean);
     if (query.length) href += `?${query.join('&')}`;
     const p = document.createElement('p');
